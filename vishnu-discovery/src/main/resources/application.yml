@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: vishnu-discovery
+
+server:
+  port: 8761
+  waitTimeInMsWhenSyncEmpty: 5
+
+#disable self registration
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

@@ -9,13 +9,16 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
 group 'ninja.harmless.vishnu'
 version '0.0.1-SNAPSHOT'
 
-apply plugin: 'groovy'
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
@@ -29,14 +32,12 @@ ext {
 dependencies {
     compile project(':vishnu-common')
 
-    compile('org.springframework.cloud:spring-cloud-starter-eureka')
-    compile('org.springframework.cloud:spring-cloud-config-server')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.codehaus.groovy:groovy-all:2.4.11')
     testCompile('junit:junit:4.12')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
     testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
-
 }
 
 dependencyManagement {

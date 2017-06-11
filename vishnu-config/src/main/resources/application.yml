@@ -11,3 +11,5 @@ spring:
   cloud.config.server:
         native:
           searchLocations: file:///home/bnjm/IdeaProjects/vishnu/vishnu-config/src/main/resources/config
+  application:
+    name: vishnu-config
