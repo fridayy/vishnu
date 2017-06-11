@@ -7,6 +7,7 @@ Science degree in Software Design at the [FH Joanneum](www.fh-joanneum.at).
 ### Goals
 VIshnu showcases the following characteristics, architectures and points:
 * Distributed microservices based on the JVM
+* Unit and integration testing of microservices
 * Monitoring of services
 * Distributed logging
 * Distributed tracing
