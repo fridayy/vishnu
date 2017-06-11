@@ -1,3 +1,5 @@
 rootProject.name = 'vishnu'
 include 'vishnu-common'
+include 'vishnu-config'
+include 'vishnu-discovery'
 
