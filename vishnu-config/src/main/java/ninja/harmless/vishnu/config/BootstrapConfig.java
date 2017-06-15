@@ -1,9 +1,8 @@
 package ninja.harmless.vishnu.config;
 
+import ninja.harmless.vishnu.common.bootstrap.SpringBootEurekaClient;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Bootstrapping class for the Vishnu configuration server.
@@ -11,8 +10,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @author bnjm@harmless.ninja - 6/11/17.
  */
 @EnableConfigServer
-@SpringBootApplication
-@EnableEurekaClient
+@SpringBootEurekaClient
 public class BootstrapConfig {
     public static void main(String[] args) {
         SpringApplication.run(BootstrapConfig.class, args);
