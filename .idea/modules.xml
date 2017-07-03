@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-common.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-config.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-config.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-discovery.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-common/vishnu-common.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-common/vishnu-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-config/vishnu-config.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-config/vishnu-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-discovery/vishnu-discovery.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-discovery/vishnu-discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-flight-service/vishnu-flight-service.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-flight-service/vishnu-flight-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vishnu-passenger-service/vishnu-passenger-service.iml" filepath="$PROJECT_DIR$/.idea/modules/vishnu-passenger-service/vishnu-passenger-service.iml" />
     </modules>
   </component>
 </project>

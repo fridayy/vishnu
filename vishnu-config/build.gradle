@@ -1,30 +1,5 @@
-buildscript {
-    ext {
-        springBootVersion = '1.5.4.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
 group 'ninja.harmless.vishnu'
 version '0.0.1-SNAPSHOT'
-
-apply plugin: 'groovy'
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-ext {
-    springCloudVersion = 'Dalston.SR1'
-}
 
 dependencies {
     compile project(':vishnu-common')
@@ -37,10 +12,4 @@ dependencies {
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
     testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
 
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
 }

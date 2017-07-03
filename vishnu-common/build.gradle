@@ -10,6 +10,15 @@ repositories {
     mavenCentral()
 }
 
+bootJar.enabled = false
+jar.enabled = true
+
+bootJar {
+    launchScript {
+        included = false
+    }
+}
+
 dependencies {
     compileOnly('org.springframework.boot:spring-boot-starter')
     compileOnly('org.springframework.cloud:spring-cloud-starter-eureka')

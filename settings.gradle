@@ -1,5 +1,18 @@
 rootProject.name = 'vishnu'
-include 'vishnu-common'
-include 'vishnu-config'
-include 'vishnu-discovery'
+def projects = ["vishnu-common" : "",
+                "vishnu-config" : "",
+                "vishnu-discovery" : "",
+                "vishnu-flight-service" : "",
+                "vishnu-passenger-service" : "",
+]
 
+projects.keySet().each {
+    include it as String
+}
+
+rootProject.children.each {
+    String projectName = it.name.replaceAll("\\p{Upper}") { "-${it.toLowerCase()}"}
+    def path = projects[projectName] ?: ""
+    it.projectDir = new File(settingsDir, "$path/$projectName")
+    it.setBuildFileName('build.gradle')
+}
