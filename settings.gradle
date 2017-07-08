@@ -3,7 +3,10 @@ def projects = ["vishnu-common" : "",
                 "vishnu-config" : "",
                 "vishnu-discovery" : "",
                 "vishnu-flight-service" : "",
+                "vishnu-flight-monitoring-service" : "",
                 "vishnu-passenger-service" : "",
+                "vishnu-zipkin" : "",
+                "vishnu-zuul" : ""
 ]
 
 projects.keySet().each {

@@ -45,6 +45,7 @@ subprojects {
         testCompile('junit:junit:4.12')
         testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
         testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+        compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 
     }
 
