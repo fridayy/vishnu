@@ -1,9 +1,11 @@
 package ninja.harmless.vishnu;
 
+import ninja.harmless.vishnu.common.bootstrap.SpringBootEurekaClient;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-@SpringBootApplication
+@SpringBootEurekaClient
+@EnableZuulProxy
 public class VishnuZuulApplication {
 
 	public static void main(String[] args) {

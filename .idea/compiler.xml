@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="vishnu-common_main" target="1.8" />
+      <module name="vishnu-common_test" target="1.8" />
+      <module name="vishnu-config_main" target="1.8" />
+      <module name="vishnu-config_test" target="1.8" />
+      <module name="vishnu-discovery_main" target="1.8" />
+      <module name="vishnu-discovery_test" target="1.8" />
+      <module name="vishnu-flight-monitoring-service_main" target="1.8" />
+      <module name="vishnu-flight-monitoring-service_test" target="1.8" />
+      <module name="vishnu-flight-service_main" target="1.8" />
+      <module name="vishnu-flight-service_test" target="1.8" />
+      <module name="vishnu-passenger-service_main" target="1.8" />
+      <module name="vishnu-passenger-service_test" target="1.8" />
+      <module name="vishnu-zipkin_main" target="1.8" />
+      <module name="vishnu-zipkin_test" target="1.8" />
+      <module name="vishnu-zuul_main" target="1.8" />
+      <module name="vishnu-zuul_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+zuul:
+  add-proxy-headers: true
+  routes:
+    vishnu-gateway: /**
+    vishnu-gateway: http://localhost:8080
+
+eureka:
+  instance:
+    preferIpAddress: true

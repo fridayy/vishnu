@@ -1,6 +1,6 @@
 # Vishnu configuration server properties
 server:
-  port: 8000
+  port: 8888
 
 # Provides a pure filesystem based configuration where all configs are stored at the location specified in
 # spring.cloud.config.server.native.searchLocation
@@ -13,3 +13,7 @@ spring:
           searchLocations: file:///home/bnjm/IdeaProjects/vishnu/vishnu-config/src/main/resources/config
   application:
     name: vishnu-config
+
+eureka:
+  instance:
+    preferIpAddress: true

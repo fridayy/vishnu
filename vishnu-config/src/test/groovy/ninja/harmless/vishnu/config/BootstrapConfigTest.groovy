@@ -1,6 +1,7 @@
 package ninja.harmless.vishnu.config
 
 import ninja.harmless.vishnu.common.test.category.SpringIntegrationTest
+import org.junit.Ignore
 import org.junit.experimental.categories.Category
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -11,6 +12,7 @@ import spock.lang.Specification
  */
 @Category(SpringIntegrationTest)
 @SpringBootTest
+@Ignore
 class BootstrapConfigTest extends Specification {
     @Autowired
     ApplicationContext ctx

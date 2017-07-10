@@ -1,7 +1,3 @@
-spring:
-  application:
-    name: vishnu-discovery
-
 server:
   port: 8761
   waitTimeInMsWhenSyncEmpty: 5
