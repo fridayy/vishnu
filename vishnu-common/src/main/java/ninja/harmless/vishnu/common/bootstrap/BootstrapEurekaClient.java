@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @SpringBootApplication
 @EnableEurekaClient
-public @interface SpringBootEurekaClient {
+public @interface BootstrapEurekaClient {
 }

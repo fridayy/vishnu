@@ -1,0 +1,9 @@
+server:
+  port: 8001
+
+eureka:
+  instance:
+    preferIpAddress: true
+
+api:
+  version: v1

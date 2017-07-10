@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VishnuFlightServiceApplicationTests {
+public class BootstrapFlightServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {

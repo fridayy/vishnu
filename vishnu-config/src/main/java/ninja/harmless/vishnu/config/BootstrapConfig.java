@@ -1,6 +1,6 @@
 package ninja.harmless.vishnu.config;
 
-import ninja.harmless.vishnu.common.bootstrap.SpringBootEurekaClient;
+import ninja.harmless.vishnu.common.bootstrap.BootstrapEurekaClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
@@ -10,7 +10,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * @author bnjm@harmless.ninja - 6/11/17.
  */
 @EnableConfigServer
-@SpringBootEurekaClient
+@BootstrapEurekaClient
 public class BootstrapConfig {
     public static void main(String[] args) {
         SpringApplication.run(BootstrapConfig.class, args);

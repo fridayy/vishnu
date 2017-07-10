@@ -42,6 +42,8 @@ dependencyManagement {
 
 
 dependencies {
+	compile project(':vishnu-common')
+
 	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-eureka')
