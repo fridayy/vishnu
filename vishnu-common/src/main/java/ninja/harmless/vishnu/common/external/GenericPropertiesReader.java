@@ -17,32 +17,48 @@ public class GenericPropertiesReader {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @SuppressWarnings("unchecked")
     public <T> List<T> read(String resourceName, Class<T> type) {
         Properties properties = new Properties();
         try {
             properties.load(this.getClass().getClassLoader().getResourceAsStream(resourceName));
         } catch (IOException e) {
-            logger.error("Could not read countries.properties");
+            logger.error("Could not read {}", resourceName);
         }
 
         List<T> l = new ArrayList<>();
 
-        try {
-            Constructor c = type.getConstructor(String.class, String.class);
-            properties.forEach((k,v) -> {
-                try {
-                    l.add((T) c.newInstance((String) v, (String) k));
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            });
-        } catch (NoSuchMethodException e) {
-            logger.error("only tuple string constructors are allowed");
+        Constructor[] constructors = type.getConstructors();
+
+        if(constructors.length != 2) {
+            throw new IllegalArgumentException("Only classes with one constructor are allowed");
         }
+
+        Constructor c = null;
+
+        if(constructors[0].getParameterTypes().length != 0) {
+            c = constructors[0];
+        } else {
+            c = constructors[1];
+        }
+
+        Class[] params = c.getParameterTypes();
+        Constructor finalC = c;
+        properties.forEach((k, v) -> {
+            try {
+                if (params[0] == Integer.class) {
+                    Integer integer = Integer.valueOf((String) v);
+                    l.add((T) finalC.newInstance(integer, k));
+                } else if (params[1] == Integer.class) {
+                    Integer integer = Integer.valueOf((String) v);
+                    l.add((T) finalC.newInstance(k, integer));
+                } else {
+                    l.add((T) finalC.newInstance(v, k));
+                }
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                logger.error("Could not instantiate {0} with {1}, {2}", type.getSimpleName(), v, k);
+            }
+        });
 
         return l;
     }

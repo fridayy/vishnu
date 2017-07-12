@@ -15,8 +15,8 @@
     <orderEntry type="library" name="Gradle: org.springframework.cloud:spring-cloud-starter-eureka:2.0.0.M1" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot:2.0.0.M2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-autoconfigure:2.0.0.M2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.zipkin.java:zipkin-autoconfigure-ui:1.23.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-logging:2.0.0.M2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.zipkin.java:zipkin-autoconfigure-ui:1.23.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-core:5.0.0.RC2" level="project" />
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.18" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.cloud:spring-cloud-starter:2.0.0.M1" level="project" />

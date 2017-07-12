@@ -2,9 +2,8 @@ package ninja.harmless.vishnu.common.entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 /**
@@ -12,20 +11,20 @@ import java.time.LocalDateTime;
  */
 @Entity
 public class Flight extends AbstractPersistable<Long> {
-    @OneToOne(cascade = CascadeType.ALL)
-    private Destination from;
+    @ManyToOne
+    private Airport from;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Destination to;
+    @ManyToOne
+    private Airport to;
 
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private String flightNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Airplane airplane;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Airline operator;
 
     public Flight() {
@@ -41,11 +40,11 @@ public class Flight extends AbstractPersistable<Long> {
         this.operator = builder.operator;
     }
 
-    public Destination getFrom() {
+    public Airport getFrom() {
         return from;
     }
 
-    public Destination getTo() {
+    public Airport getTo() {
         return to;
     }
 
@@ -75,8 +74,8 @@ public class Flight extends AbstractPersistable<Long> {
 
 
     public static class Builder {
-        private Destination from;
-        private Destination to;
+        private Airport from;
+        private Airport to;
         private LocalDateTime departureTime;
         private LocalDateTime arrivalTime;
         private String flightNumber;
@@ -86,13 +85,13 @@ public class Flight extends AbstractPersistable<Long> {
         public Builder() {
         }
 
-        public Builder from(Destination destination) {
-            this.from = destination;
+        public Builder from(Airport airport) {
+            this.from = airport;
             return this;
         }
 
-        public Builder to(Destination destination) {
-            this.to = destination;
+        public Builder to(Airport airport) {
+            this.to = airport;
             return this;
         }
 

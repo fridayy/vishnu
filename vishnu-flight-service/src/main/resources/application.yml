@@ -1,3 +1,5 @@
 spring:
   application:
     name: vishnu-flight-service
+
+api.version: v1

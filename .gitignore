@@ -31,6 +31,7 @@ gradle-app.setting
 *.iws
 /out/
 .idea_modules/
+.idea
 atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
