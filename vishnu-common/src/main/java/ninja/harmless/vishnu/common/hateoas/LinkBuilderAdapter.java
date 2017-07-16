@@ -2,7 +2,6 @@ package ninja.harmless.vishnu.common.hateoas;
 
 import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringValueResolver;
 
 /**
@@ -11,7 +10,6 @@ import org.springframework.util.StringValueResolver;
  *
  * @author bnjm@harmless.ninja - 12/10/16.
  */
-@Component
 public class LinkBuilderAdapter implements EmbeddedValueResolverAware {
 
     private static final LinkBuilderFactory FACTORY = new LinkBuilderFactory();
