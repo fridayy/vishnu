@@ -18,6 +18,9 @@ public class AirplaneResource extends ResourceSupport {
         this.uuid = uuid;
     }
 
+    public AirplaneResource() {
+    }
+
     public String getTypeDeclaration() {
         return typeDeclaration;
     }

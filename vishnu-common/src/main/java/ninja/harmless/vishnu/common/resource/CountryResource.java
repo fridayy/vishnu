@@ -18,6 +18,9 @@ public class CountryResource extends ResourceSupport {
         this.uuid = uuid;
     }
 
+    public CountryResource() {
+    }
+
     public String getCountryCode() {
         return countryCode;
     }

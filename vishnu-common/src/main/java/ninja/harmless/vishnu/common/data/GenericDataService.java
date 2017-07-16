@@ -1,7 +1,7 @@
 package ninja.harmless.vishnu.common.data;
 
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException;
-import ninja.harmless.vishnu.common.hateoas.ResourceDisassmbler;
+import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -22,12 +22,12 @@ public abstract class GenericDataService<T, R extends ResourceSupport> implement
 
     protected PagingAndSortingRepository<T, Long> repository;
     protected ResourceAssembler<T, R> resourceAssembler;
-    protected ResourceDisassmbler<R, T> resourceDisassmbler;
+    protected ResourceDisassembler<R, T> resourceDisassembler;
 
-    public GenericDataService(PagingAndSortingRepository<T, Long> repository, ResourceAssembler<T, R> resourceAssembler, ResourceDisassmbler<R, T> resourceDisassmbler) {
+    public GenericDataService(PagingAndSortingRepository<T, Long> repository, ResourceAssembler<T, R> resourceAssembler, ResourceDisassembler<R, T> resourceDisassembler) {
         this.repository = repository;
         this.resourceAssembler = resourceAssembler;
-        this.resourceDisassmbler = resourceDisassmbler;
+        this.resourceDisassembler = resourceDisassembler;
     }
 
     @Override
@@ -56,7 +56,7 @@ public abstract class GenericDataService<T, R extends ResourceSupport> implement
     @Override
     public R insert(R entity) {
         Optional<R> optional = Optional.ofNullable(entity);
-        T airline = resourceDisassmbler.fromResource(optional.orElseThrow(ResourceNotFoundException::new));
+        T airline = resourceDisassembler.fromResource(optional.orElseThrow(ResourceNotFoundException::new));
         repository.save(airline);
 
         return optional.orElseThrow(ResourceNotFoundException::new);

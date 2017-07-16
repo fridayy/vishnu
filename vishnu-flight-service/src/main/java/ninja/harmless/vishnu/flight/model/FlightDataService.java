@@ -1,7 +1,7 @@
 package ninja.harmless.vishnu.flight.model;
 
 import ninja.harmless.vishnu.common.data.GenericDataService;
-import ninja.harmless.vishnu.common.hateoas.ResourceDisassmbler;
+import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import ninja.harmless.vishnu.common.resource.FlightResource;
 import ninja.harmless.vishnu.flight.model.entity.Flight;
 import org.springframework.hateoas.ResourceAssembler;
@@ -14,8 +14,8 @@ import java.util.UUID;
  */
 @Service
 public class FlightDataService extends GenericDataService<Flight, FlightResource> {
-    public FlightDataService(FlightRepository repository, ResourceAssembler<Flight, FlightResource> resourceAssembler, ResourceDisassmbler<FlightResource, Flight> resourceDisassmbler) {
-        super(repository, resourceAssembler, resourceDisassmbler);
+    public FlightDataService(FlightRepository repository, ResourceAssembler<Flight, FlightResource> resourceAssembler, ResourceDisassembler<FlightResource, Flight> resourceDisassembler) {
+        super(repository, resourceAssembler, resourceDisassembler);
     }
 
     @Override

@@ -3,7 +3,7 @@ package ninja.harmless.vishnu.airplane.model;
 import ninja.harmless.vishnu.airplane.model.entity.Airplane;
 import ninja.harmless.vishnu.common.data.GenericDataService;
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException;
-import ninja.harmless.vishnu.common.hateoas.ResourceDisassmbler;
+import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import ninja.harmless.vishnu.common.resource.AirplaneResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ResourceAssembler;
@@ -19,8 +19,8 @@ import java.util.UUID;
 public class AirplaneDataService extends GenericDataService<Airplane, AirplaneResource> {
 
     @Autowired
-    public AirplaneDataService(AirplaneRepository repository, ResourceAssembler<Airplane, AirplaneResource> resourceAssembler, ResourceDisassmbler<AirplaneResource, Airplane> resourceDisassmbler) {
-        super(repository, resourceAssembler, resourceDisassmbler);
+    public AirplaneDataService(AirplaneRepository repository, ResourceAssembler<Airplane, AirplaneResource> resourceAssembler, ResourceDisassembler<AirplaneResource, Airplane> resourceDisassembler) {
+        super(repository, resourceAssembler, resourceDisassembler);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class AirplaneDataService extends GenericDataService<Airplane, AirplaneRe
     @Override
     public AirplaneResource update(AirplaneResource entity) {
         AirplaneRepository concreteRepository = (AirplaneRepository) repository;
-        Airplane airplane = resourceDisassmbler.fromResource(entity);
+        Airplane airplane = resourceDisassembler.fromResource(entity);
         Optional<Airplane> optional = concreteRepository.findAirplaneByUuid(airplane.getUuid());
         optional.orElseThrow(ResourceNotFoundException::new);
         repository.save(airplane);

@@ -18,6 +18,9 @@ public class AirlineResource extends ResourceSupport {
         this.name = name;
     }
 
+    public AirlineResource() {
+    }
+
     public UUID getUuid() {
         return uuid;
     }

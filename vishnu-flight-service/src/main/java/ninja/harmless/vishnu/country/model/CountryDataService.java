@@ -2,7 +2,7 @@ package ninja.harmless.vishnu.country.model;
 
 import ninja.harmless.vishnu.common.data.GenericDataService;
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException;
-import ninja.harmless.vishnu.common.hateoas.ResourceDisassmbler;
+import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import ninja.harmless.vishnu.common.resource.CountryResource;
 import ninja.harmless.vishnu.country.model.entity.Country;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ import java.util.UUID;
 public class CountryDataService extends GenericDataService<Country, CountryResource> {
 
     @Autowired
-    public CountryDataService(CountryRepository repository, ResourceAssembler<Country, CountryResource> resourceAssembler, ResourceDisassmbler<CountryResource, Country> resourceDisassmbler) {
-        super(repository, resourceAssembler, resourceDisassmbler);
+    public CountryDataService(CountryRepository repository, ResourceAssembler<Country, CountryResource> resourceAssembler, ResourceDisassembler<CountryResource, Country> resourceDisassembler) {
+        super(repository, resourceAssembler, resourceDisassembler);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CountryDataService extends GenericDataService<Country, CountryResou
     @Override
     public CountryResource update(CountryResource entity) {
         CountryRepository concreteRepository = (CountryRepository) repository;
-        Country country = resourceDisassmbler.fromResource(entity);
+        Country country = resourceDisassembler.fromResource(entity);
         Optional<Country> optional = concreteRepository.findByUuid(country.getUuid());
         optional.orElseThrow(ResourceNotFoundException::new);
         repository.save(country);

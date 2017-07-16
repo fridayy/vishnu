@@ -10,4 +10,13 @@ class AirlineControllerTest extends AbstractControllerTest {
     String baseUrl() {
         return "airline"
     }
+    
+    @Override
+    String postJSON() {
+        return '''
+         {
+            "name" : "TESTAirline"
+         }
+        '''
+    }
 }

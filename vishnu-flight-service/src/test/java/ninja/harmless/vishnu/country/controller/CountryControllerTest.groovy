@@ -9,4 +9,11 @@ class CountryControllerTest extends AbstractControllerTest {
     String baseUrl() {
         return "country"
     }
+    
+    @Override
+    String postJSON() {
+        return '''
+            { "countryCode" : "AT", "name" : "Austria" }
+        '''
+    }
 }

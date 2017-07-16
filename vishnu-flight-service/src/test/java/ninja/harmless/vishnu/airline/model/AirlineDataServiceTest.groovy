@@ -2,7 +2,7 @@ package ninja.harmless.vishnu.airline.model
 
 import ninja.harmless.vishnu.airline.model.entity.Airline
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException
-import ninja.harmless.vishnu.common.hateoas.ResourceDisassmbler
+import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler
 import ninja.harmless.vishnu.common.resource.AirlineResource
 import org.springframework.hateoas.ResourceAssembler
 import org.springframework.hateoas.ResourceSupport
@@ -26,7 +26,7 @@ class AirlineDataServiceTest extends Specification {
             
             ResourceAssembler mockedResourceAssembler = Mock(ResourceAssembler)
             mockedResourceAssembler.toResource(_) >> new AirlineResource(input.uuid, input.name)
-            ResourceDisassmbler mockedDisassembler = Mock(ResourceDisassmbler)
+            ResourceDisassembler mockedDisassembler = Mock(ResourceDisassembler)
             classUnderTest = new AirlineDataService(mockedRepository, mockedResourceAssembler, mockedDisassembler)
         when:
             def result = classUnderTest.findOneById(1L)
@@ -48,7 +48,7 @@ class AirlineDataServiceTest extends Specification {
             
             ResourceAssembler mockedResourceAssembler = Mock(ResourceAssembler)
             mockedResourceAssembler.toResource(_) >> null
-            ResourceDisassmbler mockedDisassembler = Mock(ResourceDisassmbler)
+            ResourceDisassembler mockedDisassembler = Mock(ResourceDisassembler)
             classUnderTest = new AirlineDataService(mockedRepository, mockedResourceAssembler, mockedDisassembler)
         when:
             classUnderTest.findOneById(1L)
@@ -63,7 +63,7 @@ class AirlineDataServiceTest extends Specification {
             mockedRepository.findAirlineByUuid(_) >> Optional.ofNullable(airline)
             ResourceAssembler mockedResourceAssembler = Mock(ResourceAssembler)
             mockedResourceAssembler.toResource(_) >> new AirlineResource(airline.uuid, airline.name)
-            ResourceDisassmbler mockedDisassembler = Mock(ResourceDisassmbler)
+            ResourceDisassembler mockedDisassembler = Mock(ResourceDisassembler)
             classUnderTest = new AirlineDataService(mockedRepository, mockedResourceAssembler, mockedDisassembler)
         when:
             def result = classUnderTest.findOneByUUID(airline.uuid)

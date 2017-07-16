@@ -1,6 +1,6 @@
 package ninja.harmless.vishnu.common.resource;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.time.LocalDateTime;
@@ -10,21 +10,21 @@ import java.util.UUID;
  * @author bnjm@harmless.ninja - 7/16/17.
  */
 public class FlightResource extends ResourceSupport {
-    @JsonIgnore
-    private final AirportResource from;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private AirportResource from;
 
-    @JsonIgnore
-    private final AirportResource to;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private AirportResource to;
 
-    private final LocalDateTime departureTime;
-    private final LocalDateTime arrivalTime;
-    private final String flightNumber;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalTime;
+    private String flightNumber;
 
-    @JsonIgnore
-    private final AirplaneResource airplane;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private AirplaneResource airplane;
 
-    @JsonIgnore
-    private final AirlineResource operator;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private AirlineResource operator;
 
     private UUID uuid;
 
@@ -37,6 +37,9 @@ public class FlightResource extends ResourceSupport {
         this.airplane = airplane;
         this.operator = operator;
         this.uuid = uuid;
+    }
+
+    public FlightResource() {
     }
 
     public AirportResource getFrom() {
