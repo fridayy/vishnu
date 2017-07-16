@@ -1,13 +1,12 @@
-package ninja.harmless.vishnu.airline.controller
+package ninja.harmless.vishnu.airport.controller
 
 import ninja.harmless.vishnu.AbstractControllerTest
 /**
  * @author bnjm@harmless.ninja - 7/16/17.
  */
-class AirlineControllerTest extends AbstractControllerTest {
-    
+class AirportControllerTest extends AbstractControllerTest {
     @Override
     String baseUrl() {
-        return "airline"
+        return "airport"
     }
 }

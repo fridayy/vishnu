@@ -18,8 +18,27 @@ public class BootstrapPassengerServiceApplication {
 class Passenger {
 	public String name;
 
-	public Passenger(String name) {
+	public String isTransient;
+
+	public Passenger(String name, String isTransient) {
 		this.name = name;
+		this.isTransient = isTransient;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getIsTransient() {
+		return isTransient;
+	}
+
+	public void setIsTransient(String isTransient) {
+		this.isTransient = isTransient;
 	}
 }
 
@@ -27,7 +46,7 @@ class Passenger {
 class Controller {
 	@GetMapping("/")
 	public Mono<Passenger> getPassenger() {
-		Passenger p = new Passenger("Heinrich");
+		Passenger p = new Passenger("Heinrich", "sadjhasjkdas");
 		return Mono.just(p);
 	}
 }

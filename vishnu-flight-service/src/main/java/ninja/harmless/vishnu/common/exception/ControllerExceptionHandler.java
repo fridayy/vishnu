@@ -24,6 +24,11 @@ public class ControllerExceptionHandler {
     }
 
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> resourceNotFoundHandler() {
+        return new ResponseEntity<>("{ error : \"resource could not be found.\"}", getJsonContentTypeHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
     private HttpHeaders getJsonContentTypeHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

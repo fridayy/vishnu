@@ -1,4 +1,4 @@
-package ninja.harmless.vishnu.flight.model;
+package ninja.harmless.vishnu.common.helper;
 
 import ninja.harmless.vishnu.airline.model.AirlineRepository;
 import ninja.harmless.vishnu.airline.model.entity.Airline;
@@ -9,12 +9,14 @@ import ninja.harmless.vishnu.airport.model.entity.Airport;
 import ninja.harmless.vishnu.common.external.GenericPropertiesReader;
 import ninja.harmless.vishnu.country.model.CountryRepository;
 import ninja.harmless.vishnu.country.model.entity.Country;
+import ninja.harmless.vishnu.flight.model.FlightRepository;
 import ninja.harmless.vishnu.flight.model.entity.Flight;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -33,6 +35,7 @@ import java.util.List;
  * @author bnjm@harmless.ninja - 7/10/17.
  */
 @Component
+@Profile("h2db")
 public class FlightGeneratorBean {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

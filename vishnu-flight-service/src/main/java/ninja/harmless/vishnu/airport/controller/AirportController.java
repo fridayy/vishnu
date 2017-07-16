@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 @RequestMapping("${api.version}/airport")
-public class AirportContoller extends GenericCrudController<AirportResource> {
-    public AirportContoller(DataService<AirportResource> dataService) {
+public class AirportController extends GenericCrudController<AirportResource> {
+    public AirportController(DataService<AirportResource> dataService) {
         super(dataService);
     }
 }

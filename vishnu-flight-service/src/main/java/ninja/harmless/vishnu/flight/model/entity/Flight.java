@@ -31,7 +31,7 @@ public class Flight extends AbstractPersistable<Long> {
     @ManyToOne
     private Airline operator;
 
-    private UUID uuid;
+    private UUID uuid = UUID.randomUUID();
 
     public Flight() {
     }

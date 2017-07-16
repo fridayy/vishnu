@@ -2,6 +2,9 @@ package ninja.harmless.vishnu.airline.model
 
 import ninja.harmless.vishnu.airline.model.entity.Airline
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException
+import ninja.harmless.vishnu.common.hateoas.ResourceDisassmbler
+import ninja.harmless.vishnu.common.resource.AirlineResource
+import org.springframework.hateoas.ResourceAssembler
 import org.springframework.hateoas.ResourceSupport
 import spock.lang.Specification
 import spock.lang.Subject
@@ -20,7 +23,11 @@ class AirlineDataServiceTest extends Specification {
         given:
             AirlineRepository mockedRepository = Mock(AirlineRepository)
             mockedRepository.findById(_) >> Optional.of(input)
-            classUnderTest = new AirlineDataService(mockedRepository)
+            
+            ResourceAssembler mockedResourceAssembler = Mock(ResourceAssembler)
+            mockedResourceAssembler.toResource(_) >> new AirlineResource(input.uuid, input.name)
+            ResourceDisassmbler mockedDisassembler = Mock(ResourceDisassmbler)
+            classUnderTest = new AirlineDataService(mockedRepository, mockedResourceAssembler, mockedDisassembler)
         when:
             def result = classUnderTest.findOneById(1L)
         then:
@@ -28,8 +35,8 @@ class AirlineDataServiceTest extends Specification {
             result.name == input.name
             result.uuid == input.uuid
         where:
-            input              || _
-            new Airline("Bla") || _
+            input                    || _
+            new Airline("Bla")       || _
             new Airline("Lufthansa") || _
         
     }
@@ -38,7 +45,11 @@ class AirlineDataServiceTest extends Specification {
         given:
             AirlineRepository mockedRepository = Mock(AirlineRepository)
             mockedRepository.findById(_) >> Optional.ofNullable(null)
-            classUnderTest = new AirlineDataService(mockedRepository)
+            
+            ResourceAssembler mockedResourceAssembler = Mock(ResourceAssembler)
+            mockedResourceAssembler.toResource(_) >> null
+            ResourceDisassmbler mockedDisassembler = Mock(ResourceDisassmbler)
+            classUnderTest = new AirlineDataService(mockedRepository, mockedResourceAssembler, mockedDisassembler)
         when:
             classUnderTest.findOneById(1L)
         then:
@@ -50,7 +61,10 @@ class AirlineDataServiceTest extends Specification {
             AirlineRepository mockedRepository = Mock(AirlineRepository)
             Airline airline = new Airline("TEST")
             mockedRepository.findAirlineByUuid(_) >> Optional.ofNullable(airline)
-            classUnderTest = new AirlineDataService(mockedRepository)
+            ResourceAssembler mockedResourceAssembler = Mock(ResourceAssembler)
+            mockedResourceAssembler.toResource(_) >> new AirlineResource(airline.uuid, airline.name)
+            ResourceDisassmbler mockedDisassembler = Mock(ResourceDisassmbler)
+            classUnderTest = new AirlineDataService(mockedRepository, mockedResourceAssembler, mockedDisassembler)
         when:
             def result = classUnderTest.findOneByUUID(airline.uuid)
         then:
