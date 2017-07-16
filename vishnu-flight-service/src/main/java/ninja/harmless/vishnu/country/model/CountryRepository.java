@@ -1,11 +1,18 @@
-package ninja.harmless.vishnu.flight.model;
+package ninja.harmless.vishnu.country.model;
 
-import ninja.harmless.vishnu.common.entity.Country;
+import ninja.harmless.vishnu.country.model.entity.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author bnjm@harmless.ninja - 7/10/17.
  */
 public interface CountryRepository extends JpaRepository<Country, Long> {
     Country findCountryByCountryCode(String countryCode);
+
+    Optional<Country> findByUuid(UUID uuid);
+
+    void deleteByUuid(UUID uuid);
 }

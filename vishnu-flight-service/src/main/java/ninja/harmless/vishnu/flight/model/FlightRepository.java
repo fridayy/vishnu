@@ -1,6 +1,6 @@
 package ninja.harmless.vishnu.flight.model;
 
-import ninja.harmless.vishnu.common.entity.Flight;
+import ninja.harmless.vishnu.flight.model.entity.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

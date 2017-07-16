@@ -1,7 +1,15 @@
 package ninja.harmless.vishnu.flight.model;
 
-import ninja.harmless.vishnu.common.entity.*;
+import ninja.harmless.vishnu.airline.model.AirlineRepository;
+import ninja.harmless.vishnu.airline.model.entity.Airline;
+import ninja.harmless.vishnu.airplane.model.AirplaneRepository;
+import ninja.harmless.vishnu.airplane.model.entity.Airplane;
+import ninja.harmless.vishnu.airport.model.AirportRepository;
+import ninja.harmless.vishnu.airport.model.entity.Airport;
 import ninja.harmless.vishnu.common.external.GenericPropertiesReader;
+import ninja.harmless.vishnu.country.model.CountryRepository;
+import ninja.harmless.vishnu.country.model.entity.Country;
+import ninja.harmless.vishnu.flight.model.entity.Flight;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;

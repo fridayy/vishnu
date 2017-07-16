@@ -1,10 +1,14 @@
-package ninja.harmless.vishnu.common.entity;
+package ninja.harmless.vishnu.flight.model.entity;
 
+import ninja.harmless.vishnu.airline.model.entity.Airline;
+import ninja.harmless.vishnu.airplane.model.entity.Airplane;
+import ninja.harmless.vishnu.airport.model.entity.Airport;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * @author bnjm@harmless.ninja - 7/10/17.
@@ -26,6 +30,8 @@ public class Flight extends AbstractPersistable<Long> {
 
     @ManyToOne
     private Airline operator;
+
+    private UUID uuid;
 
     public Flight() {
     }
@@ -66,6 +72,14 @@ public class Flight extends AbstractPersistable<Long> {
 
     public Airline getOperator() {
         return operator;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public static Builder builder() {

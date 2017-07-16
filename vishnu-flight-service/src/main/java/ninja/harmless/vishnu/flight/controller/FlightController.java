@@ -1,6 +1,6 @@
 package ninja.harmless.vishnu.flight.controller;
 
-import ninja.harmless.vishnu.common.entity.Flight;
+import ninja.harmless.vishnu.flight.model.entity.Flight;
 import ninja.harmless.vishnu.flight.model.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
