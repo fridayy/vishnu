@@ -1,6 +1,8 @@
 package ninja.harmless.vishnu.country.model.entity;
 
 import ninja.harmless.vishnu.airport.model.entity.Airport;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
@@ -60,5 +62,33 @@ public class Country extends AbstractPersistable<Long> {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Country country = (Country) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(countryCode, country.countryCode)
+                .append(name, country.name)
+                .append(uuid, country.uuid)
+                .append(airportList, country.airportList)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(countryCode)
+                .append(name)
+                .append(uuid)
+                .append(airportList)
+                .toHashCode();
     }
 }

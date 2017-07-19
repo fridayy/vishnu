@@ -1,5 +1,7 @@
 package ninja.harmless.vishnu.common.resource;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.UUID;
@@ -43,5 +45,31 @@ public class AirplaneResource extends ResourceSupport {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AirplaneResource that = (AirplaneResource) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(typeDeclaration, that.typeDeclaration)
+                .append(capacity, that.capacity)
+                .append(uuid, that.uuid)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(typeDeclaration)
+                .append(capacity)
+                .append(uuid)
+                .toHashCode();
     }
 }

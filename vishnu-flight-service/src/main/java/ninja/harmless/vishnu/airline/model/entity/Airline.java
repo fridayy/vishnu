@@ -1,6 +1,8 @@
 package ninja.harmless.vishnu.airline.model.entity;
 
 import ninja.harmless.vishnu.flight.model.entity.Flight;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
@@ -48,5 +50,31 @@ public class Airline extends AbstractPersistable<Long> {
 
     public void setFlightList(List<Flight> flightList) {
         this.flightList = flightList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Airline airline = (Airline) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(name, airline.name)
+                .append(uuid, airline.uuid)
+                .append(flightList, airline.flightList)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(name)
+                .append(uuid)
+                .append(flightList)
+                .toHashCode();
     }
 }

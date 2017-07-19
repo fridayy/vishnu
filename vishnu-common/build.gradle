@@ -61,7 +61,9 @@ dependencies {
     
     compileOnly('org.springframework.cloud:spring-cloud-starter-feign')
     compileOnly('org.springframework.cloud:spring-cloud-starter-ribbon')
-
+    compileOnly('org.apache.commons:commons-lang3:3.6')
+    
+    
     compile('org.codehaus.groovy:groovy-all:2.4.11')
     testCompile('junit:junit:4.12')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')

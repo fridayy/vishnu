@@ -22,14 +22,21 @@ public class DataServiceLoggingAspect {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut("execution(* ninja.harmless.vishnu.common.data.DataService.*(..))")
-    public void pointcut() {}
+    public void pointcut() {
+        // pointcut definition
+    }
 
     @AfterThrowing(pointcut = "pointcut()", throwing = "e")
     public void logAfterExceptionWasThrown(JoinPoint jp, Throwable e) {
+        Object[] args = jp.getArgs();
+        String argsAsString = "";
+        if (args.length > 0) {
+            argsAsString = Arrays.toString(args);
+        }
         logger.error("{} in {}.{}({}) thrown. Cause: {}. ",
                 e.getMessage(), jp.getSignature().getDeclaringTypeName(),
                 jp.getSignature().getName(),
-                Arrays.toString(jp.getArgs()),
+                argsAsString,
                 e.getCause(), e);
     }
 

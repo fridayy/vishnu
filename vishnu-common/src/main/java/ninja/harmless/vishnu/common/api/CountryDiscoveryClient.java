@@ -27,7 +27,7 @@ public class CountryDiscoveryClient {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    private final String VISHNU_FLIGHT_SERVICE = "vishnu-flight-service";
+    private static final  String VISHNU_FLIGHT_SERVICE = "vishnu-flight-service";
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public CountryResource getCountryByCountryCode(String code) {

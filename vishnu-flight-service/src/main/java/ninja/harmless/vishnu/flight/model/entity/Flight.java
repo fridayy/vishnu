@@ -96,7 +96,8 @@ public class Flight extends AbstractPersistable<Long> {
         private Airplane airplane;
         private Airline operator;
 
-        public Builder() {
+        Builder() {
+            // package private default constructor for the builder
         }
 
         public Builder from(Airport airport) {

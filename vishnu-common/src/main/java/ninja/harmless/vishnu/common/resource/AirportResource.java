@@ -1,6 +1,8 @@
 package ninja.harmless.vishnu.common.resource;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.UUID;
@@ -40,5 +42,33 @@ public class AirportResource extends ResourceSupport {
 
     public CountryResource getCountryResource() {
         return countryResource;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AirportResource that = (AirportResource) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(iataCode, that.iataCode)
+                .append(city, that.city)
+                .append(uuid, that.uuid)
+                .append(countryResource, that.countryResource)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(iataCode)
+                .append(city)
+                .append(uuid)
+                .append(countryResource)
+                .toHashCode();
     }
 }
