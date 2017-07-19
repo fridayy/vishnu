@@ -21,4 +21,4 @@ Vishnu showcases the following characteristics, architectures and points:
 * Edge gateway
 
 All of the mentioned characteristics are going to implemented using [Spring Boot](http://projects.spring.io/spring-boot/), 
-[Spring Cloud](http://projects.spring.io/spring-cloud/) and other Spring related projects.
+[Spring Cloud](http://projects.spring.io/spring-cloud/), [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/) and other Spring related projects.

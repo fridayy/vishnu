@@ -1,12 +1,20 @@
 package ninja.harmless.vishnu;
 
+import ninja.harmless.vishnu.common.api.CountryDiscoveryClient;
+import ninja.harmless.vishnu.common.api.CountryFeignClient;
 import ninja.harmless.vishnu.common.bootstrap.BootstrapEurekaClient;
+import ninja.harmless.vishnu.common.resource.CountryResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @BootstrapEurekaClient
+@EnableDiscoveryClient
+@EnableFeignClients
 public class BootstrapPassengerServiceApplication {
 
 	public static void main(String[] args) {
@@ -15,38 +23,18 @@ public class BootstrapPassengerServiceApplication {
 }
 
 
-class Passenger {
-	public String name;
-
-	public String isTransient;
-
-	public Passenger(String name, String isTransient) {
-		this.name = name;
-		this.isTransient = isTransient;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getIsTransient() {
-		return isTransient;
-	}
-
-	public void setIsTransient(String isTransient) {
-		this.isTransient = isTransient;
-	}
-}
-
 @RestController
 class Controller {
+
+	@Autowired
+	CountryDiscoveryClient discoveryClient;
+
+	@Autowired
+	CountryFeignClient feignClient;
+
 	@GetMapping("/")
-	public Mono<Passenger> getPassenger() {
-		Passenger p = new Passenger("Heinrich", "sadjhasjkdas");
-		return Mono.just(p);
+	public Mono<CountryResource> getPassenger() {
+		CountryResource c = feignClient.getCountryByCountryCode("AT");
+		return Mono.just(c);
 	}
 }

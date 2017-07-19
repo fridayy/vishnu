@@ -58,6 +58,9 @@ dependencies {
     compileOnly('org.springframework.boot:spring-boot-starter-hateoas')
     compileOnly('org.springframework.boot:spring-boot-starter-aop')
     compileOnly('org.springframework.boot:spring-boot-starter-test')
+    
+    compileOnly('org.springframework.cloud:spring-cloud-starter-feign')
+    compileOnly('org.springframework.cloud:spring-cloud-starter-ribbon')
 
     compile('org.codehaus.groovy:groovy-all:2.4.11')
     testCompile('junit:junit:4.12')

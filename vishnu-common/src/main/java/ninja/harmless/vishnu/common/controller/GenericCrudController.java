@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.*;
  */
 public abstract class GenericCrudController<R extends ResourceSupport> {
 
-    private DataService<R> dataService;
+    protected DataService<R> dataService;
 
     public GenericCrudController(DataService<R> dataService) {
         this.dataService = dataService;

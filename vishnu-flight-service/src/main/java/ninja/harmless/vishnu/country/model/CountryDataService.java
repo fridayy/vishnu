@@ -8,6 +8,7 @@ import ninja.harmless.vishnu.country.model.entity.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -49,5 +50,12 @@ public class CountryDataService extends GenericDataService<Country, CountryResou
         repository.save(country);
 
         return entity;
+    }
+
+    public CountryResource findByCountryCode(String countryCode) {
+        Assert.notNull(countryCode, "Country code cannot be null");
+        CountryRepository concreteRepository = (CountryRepository) repository;
+        Optional<Country> country = Optional.ofNullable(concreteRepository.findCountryByCountryCode(countryCode));
+        return resourceAssembler.toResource(country.orElseThrow(ResourceNotFoundException::new));
     }
 }
