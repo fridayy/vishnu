@@ -45,8 +45,7 @@ public class AirplaneDataService extends GenericDataService<Airplane, AirplaneRe
         AirplaneRepository concreteRepository = (AirplaneRepository) repository;
         Airplane airplane = resourceDisassembler.fromResource(entity);
         Optional<Airplane> optional = concreteRepository.findAirplaneByUuid(airplane.getUuid());
-        optional.orElseThrow(ResourceNotFoundException::new);
-        repository.save(airplane);
+        repository.save(optional.orElseThrow(ResourceNotFoundException::new));
 
         return entity;
     }

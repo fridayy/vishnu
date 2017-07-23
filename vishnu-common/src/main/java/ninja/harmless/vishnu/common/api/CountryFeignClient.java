@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Provides the feign client api for all services
+ * Provides the vishnu-flight-service feign client api for all services
  *
  * @author bnjm@harmless.ninja - 7/16/17.
  */

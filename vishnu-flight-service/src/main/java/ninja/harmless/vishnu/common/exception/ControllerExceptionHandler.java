@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
+ * Exception handler for all flight service controller
+ *
  * @author bnjm@harmless.ninja - 7/16/17.
  */
 @ControllerAdvice
