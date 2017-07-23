@@ -6,7 +6,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,7 +20,7 @@ import java.util.UUID;
 @Entity
 public class Airport extends AbstractPersistable<Long> {
     private String iataCode;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Country country;
     private String city;
 
