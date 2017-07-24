@@ -16,8 +16,8 @@ public class FlightResource extends ResourceSupport {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private AirportResource to;
 
-    private LocalDateTime departureTime;
-    private LocalDateTime arrivalTime;
+    private String departureTime;
+    private String arrivalTime;
     private String flightNumber;
     private String status;
 
@@ -35,8 +35,8 @@ public class FlightResource extends ResourceSupport {
                           AirlineResource operator, UUID uuid, String status) {
         this.from = from;
         this.to = to;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
+        this.departureTime = departureTime.toString();
+        this.arrivalTime = arrivalTime.toString();
         this.flightNumber = flightNumber;
         this.airplane = airplane;
         this.operator = operator;
@@ -55,11 +55,11 @@ public class FlightResource extends ResourceSupport {
         return to;
     }
 
-    public LocalDateTime getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public LocalDateTime getArrivalTime() {
+    public String getArrivalTime() {
         return arrivalTime;
     }
 

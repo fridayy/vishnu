@@ -21,6 +21,7 @@ export class FlightComponent extends GenericItemListComponent<FlightResource> {
     obs.subscribe(res => {
       this.resources = res._embedded.flightResourceList.slice();
       this.resources.forEach(item => {
+        console.log(item)
         // get departure airport from backend and assign to obj
         this.http.get(item._links.from.href).map(airportRes => airportRes.json()).subscribe(airport => {
           item.from = airport;

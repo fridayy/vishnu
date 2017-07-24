@@ -7,6 +7,7 @@
   <th>To</th>
   <th>Airplane</th>
   <th>Status</th>
+  <th>Arrival Time</th>
   </thead>
   <tbody>
   <tr *ngFor="let flight of resources">
@@ -16,6 +17,7 @@
     <td>{{flight.to.iataCode}} ({{flight.to.city}})</td>
     <td>{{flight.airplane.typeDeclaration}}</td>
     <td>{{flight.status || "n/A"}}</td>
+    <td>{{flight.arrivalTime | date : 'medium' }}</td>
   </tr>
   </tbody>
 </table>

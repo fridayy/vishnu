@@ -11,6 +11,7 @@ import ninja.harmless.vishnu.flight.model.entity.FlightStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -34,8 +35,8 @@ public class FlightResourceDisassembler implements ResourceDisassembler<FlightRe
       return Flight.builder()
         .flightNumber(flightResource.getFlightNumber())
         .airplane(airplaneResourceDisassembler.fromResource(flightResource.getAirplane()))
-        .arrivalTime(flightResource.getArrivalTime())
-        .departureTime(flightResource.getDepartureTime())
+        .arrivalTime(LocalDateTime.parse(flightResource.getArrivalTime()))
+        .departureTime(LocalDateTime.parse(flightResource.getDepartureTime()))
         .from(airportResourceDisassembler.fromResource(flightResource.getFrom()))
         .to(airportResourceDisassembler.fromResource(flightResource.getTo()))
         .operator(airlineResourceDisassembler.fromResource(flightResource.getOperator()))
