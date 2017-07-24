@@ -1,0 +1,15 @@
+<h2>Airplanes</h2>
+<table class="table">
+  <thead>
+  <th>uuid</th>
+  <th>Identification</th>
+  <th>Capacity</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let airplane of resources">
+    <td>{{airplane.uuid}}</td>
+    <td>{{airplane.typeDeclaration}}</td>
+    <td>{{airplane.capacity}}</td>
+  </tr>
+  </tbody>
+</table>

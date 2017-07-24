@@ -11,6 +11,7 @@ import ninja.harmless.vishnu.country.model.CountryRepository;
 import ninja.harmless.vishnu.country.model.entity.Country;
 import ninja.harmless.vishnu.flight.model.FlightRepository;
 import ninja.harmless.vishnu.flight.model.entity.Flight;
+import ninja.harmless.vishnu.flight.model.entity.FlightStatus;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
@@ -97,19 +98,21 @@ public class FlightGeneratorBean {
 
     @PostConstruct
     @javax.transaction.Transactional
-    private void persist() {
+    void persist() {
         countryRepository.saveAll(readCountries());
         airplaneRepository.saveAll(readAirplanes());
         airlineRepository.saveAll(readAirlines());
         airportRepository.saveAll(readAirports());
-        Flight flight = Flight.builder()
-                .airplane(airplaneRepository.findAirplaneByTypeDeclaration("Embraer-170"))
-                .from(airportRepository.findAirportByIataCode("LOWG"))
-                .to(airportRepository.findAirportByIataCode("LOWW"))
-                .operator(airlineRepository.findAirlineByName("Lufthansa"))
-                .flightNumber("LH127")
-                .departureTime(LocalDateTime.now().plusHours(1))
-                .arrivalTime(LocalDateTime.now().plusHours(1).plusMinutes(30L)).build();
+      Flight flight = Flight.builder()
+        .airplane(airplaneRepository.findAirplaneByTypeDeclaration("Embraer-170"))
+        .from(airportRepository.findAirportByIataCode("LOWG"))
+        .to(airportRepository.findAirportByIataCode("LOWW"))
+        .operator(airlineRepository.findAirlineByName("Lufthansa"))
+        .flightNumber("LH127")
+        .departureTime(LocalDateTime.now().plusHours(1))
+        .arrivalTime(LocalDateTime.now().plusHours(1).plusMinutes(30L))
+        .status(FlightStatus.IN_FLIGHT)
+        .build();
         flightRepository.save(flight);
         logger.debug("Dataloading finished");
     }

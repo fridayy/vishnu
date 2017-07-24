@@ -19,6 +19,7 @@ public class FlightResource extends ResourceSupport {
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private String flightNumber;
+    private String status;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private AirplaneResource airplane;
@@ -27,10 +28,11 @@ public class FlightResource extends ResourceSupport {
     private AirlineResource operator;
 
     private UUID uuid;
+
     // TODO: refactor to avoid telescoping anti pattern (extract time values)
     public FlightResource(AirportResource from, AirportResource to, LocalDateTime departureTime,
                           LocalDateTime arrivalTime, String flightNumber, AirplaneResource airplane,
-                          AirlineResource operator, UUID uuid) {
+                          AirlineResource operator, UUID uuid, String status) {
         this.from = from;
         this.to = to;
         this.departureTime = departureTime;
@@ -39,6 +41,7 @@ public class FlightResource extends ResourceSupport {
         this.airplane = airplane;
         this.operator = operator;
         this.uuid = uuid;
+        this.status = status;
     }
 
     public FlightResource() {
@@ -74,5 +77,9 @@ public class FlightResource extends ResourceSupport {
 
     public UUID getUuid() {
         return uuid;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

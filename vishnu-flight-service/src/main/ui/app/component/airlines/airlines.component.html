@@ -1,0 +1,13 @@
+<h2>Airlines</h2>
+<table class="table">
+  <thead>
+    <th>uuid</th>
+    <th>Identification</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let airline of resources">
+      <td>{{airline.uuid}}</td>
+      <td>{{airline.name}}</td>
+    </tr>
+  </tbody>
+</table>

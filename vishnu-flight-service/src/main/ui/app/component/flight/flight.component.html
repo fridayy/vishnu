@@ -1,0 +1,21 @@
+<h2>Flights</h2>
+<table class="table">
+  <thead>
+  <th>Flight number</th>
+  <th>Airline</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Airplane</th>
+  <th>Status</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let flight of resources">
+    <td>{{flight.flightNumber}}</td>
+    <td>{{flight.airline.name}}</td>
+    <td>{{flight.from.iataCode}} ({{flight.from.city}})</td>
+    <td>{{flight.to.iataCode}} ({{flight.to.city}})</td>
+    <td>{{flight.airplane.typeDeclaration}}</td>
+    <td>{{flight.status || "n/A"}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,15 @@
+<h2>Countries</h2>
+<table class="table">
+  <thead>
+  <th>uuid</th>
+  <th>Country Code</th>
+  <th>Name</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let country of resources">
+    <td>{{country.uuid}}</td>
+    <td>{{country.countryCode}}</td>
+    <td>{{country.name}}</td>
+  </tr>
+  </tbody>
+</table>

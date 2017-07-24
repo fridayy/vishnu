@@ -53,7 +53,8 @@ public class FlightResourceAssembler extends ResourceAssemblerSupport<Flight, Fl
                     entity.getFlightNumber(),
                     airplaneResourceAssembler.toResource(entity.getAirplane()),
                     airlineResourceAssembler.toResource(entity.getOperator()),
-                    entity.getUuid());
+                    entity.getUuid(),
+                    entity.getStatus());
 
             resource.add(linkTo(methodOn(AirportController.class).getOne(entity.getFrom().getUuid().toString())).withRel("from"));
             resource.add(linkTo(methodOn(AirportController.class).getOne(entity.getTo().getUuid().toString())).withRel("to"));

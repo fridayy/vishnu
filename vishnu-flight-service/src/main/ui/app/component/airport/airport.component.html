@@ -1,0 +1,17 @@
+<h2>Airports</h2>
+<table class="table">
+  <thead>
+  <th>uuid</th>
+  <th>IATA Code</th>
+  <th>City</th>
+  <th>Country</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let airport of resources">
+    <td>{{airport.uuid}}</td>
+    <td>{{airport.iataCode}}</td>
+    <td>{{airport.city || "n/A"}}</td>
+    <td>{{airport.concreteCountry.name || "n/A"}}</td>
+  </tr>
+  </tbody>
+</table>

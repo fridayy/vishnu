@@ -1,0 +1,4 @@
+<router-outlet name="paged"></router-outlet>
+<app-pager *ngIf="pageMetadata" [totalItems]="pageMetadata.totalElements" [pageSize]="pageMetadata.size" (pageChangedEvent)="pageChangedEvent($event)"></app-pager>
+<small *ngIf="pageMetadata">Total elements: {{pageMetadata.totalElements}}</small>
+<small *ngIf="pageMetadata">Page {{pageMetadata.number + 1}}/{{pageMetadata.totalPages - 1}}</small>

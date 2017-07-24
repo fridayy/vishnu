@@ -5,3 +5,5 @@ spring:
     active: h2db
 
 api.version: v1
+server:
+  port: 8001
