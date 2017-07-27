@@ -11,7 +11,7 @@ import java.util.UUID;
  * @author bnjm@harmless.ninja - 7/12/17.
  */
 public interface AirportRepository extends JpaRepository<Airport, Long> {
-    Airport findAirportByIataCode(String iataCode);
+    Optional<Airport> findAirportByIataCode(String iataCode);
 
     List<Airport> findAirportsByCity(String city);
 

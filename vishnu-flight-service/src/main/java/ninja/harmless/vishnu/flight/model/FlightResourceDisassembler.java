@@ -1,8 +1,11 @@
 package ninja.harmless.vishnu.flight.model;
 
-import ninja.harmless.vishnu.airline.model.AirlineResourceDisassembler;
-import ninja.harmless.vishnu.airplane.model.AirplaneResourceDisassembler;
-import ninja.harmless.vishnu.airport.model.AirportResourceDisassembler;
+import ninja.harmless.vishnu.airline.model.AirlineRepository;
+import ninja.harmless.vishnu.airline.model.entity.Airline;
+import ninja.harmless.vishnu.airplane.model.AirplaneRepository;
+import ninja.harmless.vishnu.airplane.model.entity.Airplane;
+import ninja.harmless.vishnu.airport.model.AirportRepository;
+import ninja.harmless.vishnu.airport.model.entity.Airport;
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException;
 import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import ninja.harmless.vishnu.common.resource.FlightResource;
@@ -20,26 +23,31 @@ import java.util.Optional;
 @Component
 public class FlightResourceDisassembler implements ResourceDisassembler<FlightResource, Flight> {
     @Autowired
-    AirplaneResourceDisassembler airplaneResourceDisassembler;
+    private AirportRepository airportRepository;
 
     @Autowired
-    AirportResourceDisassembler airportResourceDisassembler;
+    private AirplaneRepository airplaneRepository;
 
     @Autowired
-    AirlineResourceDisassembler airlineResourceDisassembler;
+    private AirlineRepository airlineRepository;
 
     @Override
     public Flight fromResource(FlightResource resource) {
       Optional<FlightResource> optional = Optional.ofNullable(resource);
       FlightResource flightResource = optional.orElseThrow(ResourceNotFoundException::new);
+      Optional<Airport> from = airportRepository.findAirportByIataCode(flightResource.getFrom().getIataCode());
+      Optional<Airport> to = airportRepository.findAirportByIataCode(flightResource.getTo().getIataCode());
+      Optional<Airplane> airplane = airplaneRepository.findAirplaneByTypeDeclaration(flightResource.getAirplane().getTypeDeclaration());
+      Optional<Airline> airline = airlineRepository.findAirlineByName(flightResource.getOperator().getName());
+
       return Flight.builder()
         .flightNumber(flightResource.getFlightNumber())
-        .airplane(airplaneResourceDisassembler.fromResource(flightResource.getAirplane()))
+        .airplane(airplane.orElseThrow(ResourceNotFoundException::new))
         .arrivalTime(LocalDateTime.parse(flightResource.getArrivalTime()))
         .departureTime(LocalDateTime.parse(flightResource.getDepartureTime()))
-        .from(airportResourceDisassembler.fromResource(flightResource.getFrom()))
-        .to(airportResourceDisassembler.fromResource(flightResource.getTo()))
-        .operator(airlineResourceDisassembler.fromResource(flightResource.getOperator()))
-        .status(FlightStatus.valueOf(flightResource.getStatus())).build();
+        .from(from.orElseThrow(ResourceNotFoundException::new))
+        .to(to.orElseThrow(ResourceNotFoundException::new))
+        .operator(airline.orElseThrow(ResourceNotFoundException::new))
+        .status(FlightStatus.valueOf(flightResource.getStatus().toUpperCase())).build();
     }
 }

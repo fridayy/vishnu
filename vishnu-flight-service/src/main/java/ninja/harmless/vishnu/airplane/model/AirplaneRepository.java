@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 @Repository
 public interface AirplaneRepository extends JpaRepository<Airplane, Long> {
-    Airplane findAirplaneByTypeDeclaration(String typeDeclaration);
+    Optional<Airplane> findAirplaneByTypeDeclaration(String typeDeclaration);
 
     Optional<Airplane> findAirplaneByUuid(UUID uuid);
 

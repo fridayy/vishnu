@@ -12,11 +12,11 @@
   </thead>
   <tbody>
   <tr *ngFor="let flight of resources">
-    <td>{{flight.flightNumber}}</td>
-    <td>{{flight.airline.name}}</td>
-    <td>{{flight.from.iataCode}} ({{flight.from.city}})</td>
-    <td>{{flight.to.iataCode}} ({{flight.to.city}})</td>
-    <td>{{flight.airplane.typeDeclaration}}</td>
+    <td>{{flight.flightNumber || "n/A"}}</td>
+    <td>{{flight.airline.name || "n/A"}}</td>
+    <td>{{flight.from.iataCode || "n/A"}} ({{flight.from.city || "n/A"}})</td>
+    <td>{{flight.to.iataCode || "n/A"}} ({{flight.to.city || "n/A"}})</td>
+    <td>{{flight.airplane.typeDeclaration || "n/A"}}</td>
     <td>{{flight.status || "n/A"}}</td>
     <td>{{flight.arrivalTime | date : 'medium' }}</td>
   </tr>

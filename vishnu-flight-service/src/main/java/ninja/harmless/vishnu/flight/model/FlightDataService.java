@@ -17,17 +17,18 @@ import java.util.UUID;
  */
 @Service
 public class FlightDataService extends GenericDataService<Flight, FlightResource> {
+
   public FlightDataService(FlightRepository repository, ResourceAssembler<Flight, FlightResource> resourceAssembler, ResourceDisassembler<FlightResource, Flight> resourceDisassembler) {
     super(repository, resourceAssembler, resourceDisassembler);
   }
 
   @Override
   public FlightResource findOneByUUID(UUID uuid) {
-    Assert.notNull(uuid, "uuid cannot be null");
-    FlightRepository concreteRepository = (FlightRepository) repository;
-    Optional<Flight> optional = concreteRepository.findByUuid(uuid);
+      Assert.notNull(uuid, "uuid cannot be null");
+      FlightRepository concreteRepository = (FlightRepository) repository;
+      Optional<Flight> optional = concreteRepository.findByUuid(uuid);
 
-    return resourceAssembler.toResource(optional.orElseThrow(ResourceNotFoundException::new));
+      return resourceAssembler.toResource(optional.orElseThrow(ResourceNotFoundException::new));
 
   }
 
@@ -39,5 +40,12 @@ public class FlightDataService extends GenericDataService<Flight, FlightResource
   @Override
   public FlightResource update(FlightResource entity) {
     return null;
+  }
+
+  @Override
+  public FlightResource insert(FlightResource entity) {
+      this.repository.save(resourceDisassembler.fromResource(entity));
+
+      return entity;
   }
 }

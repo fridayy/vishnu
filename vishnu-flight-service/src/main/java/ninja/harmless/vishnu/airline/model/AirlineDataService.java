@@ -50,4 +50,9 @@ public class AirlineDataService extends GenericDataService<Airline, AirlineResou
 
         return entity;
     }
+
+    public AirlineResource findOneByName(String name) {
+      Optional<Airline> optional = ((AirlineRepository) repository).findAirlineByName(name);
+      return optional.map(resourceAssembler::toResource).orElseThrow(ResourceNotFoundException::new);
+    }
 }

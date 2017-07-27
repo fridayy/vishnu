@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Airline extends AbstractPersistable<Long> {
     private String name;
     private UUID uuid = UUID.randomUUID();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Flight> flightList;
 
     public Airline(String name) {

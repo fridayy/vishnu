@@ -1,1 +1,51 @@
-<h1>Ysakdkasndkjasndjkasd</h1>
+<button type="button" class="btn btn-primary btn-sm" (click)="showForm()">Add Flight</button>
+<div *ngIf="!hidden">
+  <form [formGroup]="formModel" (ngSubmit)="send()">
+    <div class="form-group">
+      <label for="flightNumber">Flight Number</label>
+      <input formControlName="flightNumber" type="text" class="form-control" id="flightNumber"  placeholder="Enter FlightNumber">
+    </div>
+
+    <div class="form-group">
+      <label for="airline">Airline</label>
+      <input formControlName="airline" type="text" class="form-control" id="airline"  placeholder="Enter Airline">
+    </div>
+
+    <div class="form-group">
+      <label for="from">Depature Airport</label>
+      <input formControlName="from" type="text" class="form-control" id="from"  placeholder="Enter Departure Airport">
+    </div>
+
+    <div class="form-group">
+      <label for="to">Destination Airport</label>
+      <input formControlName="to" type="text" class="form-control" id="to"  placeholder="Enter Destination Airport">
+    </div>
+
+    <div class="form-group">
+      <label for="airplane">Airplane</label>
+      <input formControlName="airplane" type="text" class="form-control" id="airplane"  placeholder="Enter Airplane">
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select formControlName="status" class="form-control" id="status">
+        <option>departed</option>
+        <option>delayed</option>
+        <option>in flight</option>
+        <option>landed</option>
+        <option>on approach</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="departureTime">Depature Time</label>
+      <input formControlName="departureTime" type="text" class="form-control" id="departureTime"  placeholder="Enter Departure Time">
+    </div>
+
+    <div class="form-group">
+      <label for="arrivalTime">Arrival Time</label>
+      <input formControlName="arrivalTime" type="text" class="form-control" id="arrivalTime"  placeholder="Enter Arrival Time">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>

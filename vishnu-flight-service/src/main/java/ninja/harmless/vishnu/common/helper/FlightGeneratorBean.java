@@ -104,10 +104,10 @@ public class FlightGeneratorBean {
         airlineRepository.saveAll(readAirlines());
         airportRepository.saveAll(readAirports());
       Flight flight = Flight.builder()
-        .airplane(airplaneRepository.findAirplaneByTypeDeclaration("Embraer-170"))
-        .from(airportRepository.findAirportByIataCode("LOWG"))
-        .to(airportRepository.findAirportByIataCode("LOWW"))
-        .operator(airlineRepository.findAirlineByName("Lufthansa"))
+        .airplane(airplaneRepository.findAirplaneByTypeDeclaration("Embraer-170").get())
+        .from(airportRepository.findAirportByIataCode("LOWG").get())
+        .to(airportRepository.findAirportByIataCode("LOWW").get())
+        .operator(airlineRepository.findAirlineByName("Lufthansa").get())
         .flightNumber("LH127")
         .departureTime(LocalDateTime.now().plusHours(1))
         .arrivalTime(LocalDateTime.now().plusHours(1).plusMinutes(30L))
