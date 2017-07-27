@@ -16,6 +16,8 @@ import { GenericItemListComponent } from './component/generic-item-list/generic-
 import { CountryComponent } from './component/country/country.component';
 import { AirportComponent } from './component/airport/airport.component';
 import { FlightComponent } from './component/flight/flight.component';
+import { AddFlightComponent } from './component/flight/add-flight/add-flight.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { FlightComponent } from './component/flight/flight.component';
     PagerComponent,
     CountryComponent,
     AirportComponent,
-    FlightComponent
+    FlightComponent,
+    AddFlightComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     PaginationModule.forRoot(),
+    ReactiveFormsModule,
     routing
   ],
   providers: [

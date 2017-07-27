@@ -5,6 +5,8 @@ import {Subject} from 'rxjs/Subject';
 /**
  * A shared service used by parent / child components which cannot communicate by conventional means (input bindings).
  * eg: a parent component and  multiple router-outlet children
+ *
+ * see: https://angular.io/guide/component-interaction#parent-and-children-communicate-via-a-service
  */
 export class SharedBackendService {
 

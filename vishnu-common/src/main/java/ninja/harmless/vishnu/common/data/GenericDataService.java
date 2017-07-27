@@ -9,7 +9,6 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.hateoas.ResourceSupport;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,9 +38,6 @@ public abstract class GenericDataService<T, R extends ResourceSupport> implement
 
     @Override
     public PagedResources<R> get(int size, int page) {
-        Assert.notNull(size, "Size cannot be null");
-        Assert.notNull(page, "Page cannot be null");
-
         Page<T> p = repository.findAll(PageRequest.of(page, size));
         PagedResourcesAssembler<T> pagedResourcesAssembler = new PagedResourcesAssembler<>(null, null);
         return pagedResourcesAssembler.toResource(p, resourceAssembler);

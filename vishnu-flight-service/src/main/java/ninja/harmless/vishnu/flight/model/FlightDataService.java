@@ -1,12 +1,15 @@
 package ninja.harmless.vishnu.flight.model;
 
 import ninja.harmless.vishnu.common.data.GenericDataService;
+import ninja.harmless.vishnu.common.exception.ResourceNotFoundException;
 import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import ninja.harmless.vishnu.common.resource.FlightResource;
 import ninja.harmless.vishnu.flight.model.entity.Flight;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -14,22 +17,27 @@ import java.util.UUID;
  */
 @Service
 public class FlightDataService extends GenericDataService<Flight, FlightResource> {
-    public FlightDataService(FlightRepository repository, ResourceAssembler<Flight, FlightResource> resourceAssembler, ResourceDisassembler<FlightResource, Flight> resourceDisassembler) {
-        super(repository, resourceAssembler, resourceDisassembler);
-    }
+  public FlightDataService(FlightRepository repository, ResourceAssembler<Flight, FlightResource> resourceAssembler, ResourceDisassembler<FlightResource, Flight> resourceDisassembler) {
+    super(repository, resourceAssembler, resourceDisassembler);
+  }
 
-    @Override
-    public FlightResource findOneByUUID(UUID uuid) {
-        return null;
-    }
+  @Override
+  public FlightResource findOneByUUID(UUID uuid) {
+    Assert.notNull(uuid, "uuid cannot be null");
+    FlightRepository concreteRepository = (FlightRepository) repository;
+    Optional<Flight> optional = concreteRepository.findByUuid(uuid);
 
-    @Override
-    public FlightResource delete(UUID uuid) {
-        return null;
-    }
+    return resourceAssembler.toResource(optional.orElseThrow(ResourceNotFoundException::new));
 
-    @Override
-    public FlightResource update(FlightResource entity) {
-        return null;
-    }
+  }
+
+  @Override
+  public FlightResource delete(UUID uuid) {
+    return null;
+  }
+
+  @Override
+  public FlightResource update(FlightResource entity) {
+    return null;
+  }
 }
