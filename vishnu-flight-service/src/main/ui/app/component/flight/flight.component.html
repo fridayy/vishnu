@@ -12,13 +12,13 @@
   </thead>
   <tbody>
   <tr *ngFor="let flight of resources">
-    <td>{{flight.flightNumber || "n/A"}}</td>
-    <td>{{flight.airline.name || "n/A"}}</td>
-    <td>{{flight.from.iataCode || "n/A"}} ({{flight.from.city || "n/A"}})</td>
-    <td>{{flight.to.iataCode || "n/A"}} ({{flight.to.city || "n/A"}})</td>
-    <td>{{flight.airplane.typeDeclaration || "n/A"}}</td>
-    <td>{{flight.status || "n/A"}}</td>
-    <td>{{flight.arrivalTime | date : 'medium' }}</td>
+    <td *ngIf="flight.flightNumber">{{flight.flightNumber || "n/A"}}</td>
+    <td *ngIf="flight.airline">{{flight.airline.name || "n/A"}}</td>
+    <td *ngIf="flight.from">{{flight.from.iataCode || "n/A"}} ({{flight.from.city || "n/A"}})</td>
+    <td *ngIf="flight.to">{{flight.to.iataCode || "n/A"}} ({{flight.to.city || "n/A"}})</td>
+    <td *ngIf="flight.airplane">{{flight.airplane.typeDeclaration || "n/A"}}</td>
+    <td *ngIf="flight.status">{{flight.status || "n/A"}}</td>
+    <td *ngIf="flight.arrivalTime">{{flight.arrivalTime | date : 'medium' }}</td>
   </tr>
   </tbody>
 </table>

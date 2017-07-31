@@ -1,7 +1,7 @@
 package ninja.harmless.vishnu;
 
 import ninja.harmless.vishnu.common.api.CountryDiscoveryClient;
-import ninja.harmless.vishnu.common.api.CountryFeignClient;
+import ninja.harmless.vishnu.common.api.FlightServiceFeignClient;
 import ninja.harmless.vishnu.common.bootstrap.BootstrapEurekaClient;
 import ninja.harmless.vishnu.common.resource.CountryResource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ class Controller {
 	CountryDiscoveryClient discoveryClient;
 
 	@Autowired
-	CountryFeignClient feignClient;
+    FlightServiceFeignClient feignClient;
 
 	@GetMapping("/")
 	public Mono<CountryResource> getPassenger() {

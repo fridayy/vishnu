@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author bnjm@harmless.ninja - 7/16/17.
  */
 @FeignClient("vishnu-flight-service")
-public interface CountryFeignClient {
+public interface FlightServiceFeignClient {
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/v1/country",

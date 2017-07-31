@@ -10,14 +10,13 @@ import {BACKEND_URL} from './app.tokens';
 import {AirlinesComponent} from './component/airlines/airlines.component';
 import {HttpModule} from '@angular/http';
 import {PagedContentComponent} from './component/paged-content/paged-content.component';
-import {PaginationModule} from 'ngx-bootstrap';
+import {PaginationModule, TypeaheadModule} from 'ngx-bootstrap';
 import {PagerComponent} from './component/pager/pager.component';
-import { GenericItemListComponent } from './component/generic-item-list/generic-item-list.component';
-import { CountryComponent } from './component/country/country.component';
-import { AirportComponent } from './component/airport/airport.component';
-import { FlightComponent } from './component/flight/flight.component';
-import { AddFlightComponent } from './component/flight/add-flight/add-flight.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {CountryComponent} from './component/country/country.component';
+import {AirportComponent} from './component/airport/airport.component';
+import {FlightComponent} from './component/flight/flight.component';
+import {AddFlightComponent} from './component/flight/add-flight/add-flight.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +36,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     BrowserModule,
     HttpModule,
     PaginationModule.forRoot(),
+    TypeaheadModule.forRoot(),
     ReactiveFormsModule,
     routing
   ],
