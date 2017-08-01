@@ -21,10 +21,10 @@ public class AirlineController extends GenericCrudController<AirlineResource> {
         super(dataService);
     }
 
-  @GetMapping(params = "name", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<AirlineResource> getByName(@RequestParam String name) {
-    AirlineDataService dataService = (AirlineDataService) this.dataService;
+    @GetMapping(params = "name", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AirlineResource> getByName(@RequestParam String name) {
+        AirlineDataService dataService = (AirlineDataService) this.dataService;
 
-    return new ResponseEntity<>(dataService.findOneByName(name), HttpStatus.OK);
-  }
+        return new ResponseEntity<>(dataService.findOneByName(name), HttpStatus.OK);
+    }
 }
