@@ -10,5 +10,5 @@ import java.util.UUID;
  * @author bnjm@harmless.ninja - 7/10/17.
  */
 public interface FlightRepository extends JpaRepository<Flight, Long> {
-  Optional<Flight> findByUuid(UUID uuid);
+    Optional<Flight> findByUuid(UUID uuid);
 }

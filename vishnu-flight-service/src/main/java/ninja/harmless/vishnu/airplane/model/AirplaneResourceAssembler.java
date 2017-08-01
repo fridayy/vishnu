@@ -25,7 +25,7 @@ public class AirplaneResourceAssembler extends ResourceAssemblerSupport<Airplane
     @Override
     public AirplaneResource toResource(Airplane entity) {
         Optional<Airplane> optional = Optional.ofNullable(entity);
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             return new AirplaneResource(entity.getTypeDeclaration(), entity.getCapacity(), entity.getUuid());
         }
         throw new ResourceNotFoundException();

@@ -33,16 +33,16 @@ public class Airline extends AbstractPersistable<Long> {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public UUID getUuid() {
         return uuid;
     }
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Flight> getFlightList() {

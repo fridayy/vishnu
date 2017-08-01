@@ -86,7 +86,7 @@ public class FlightGeneratorBean {
     private List<Airline> readAirlines() {
         Resource resource = new ClassPathResource("airlines.csv");
         List<Airline> airlines = new ArrayList<>();
-        try (Reader r = new InputStreamReader(resource.getInputStream())){
+        try (Reader r = new InputStreamReader(resource.getInputStream())) {
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(r);
             records.forEach(record ->
                     airlines.add(new Airline(record.get(0))));
@@ -103,16 +103,16 @@ public class FlightGeneratorBean {
         airplaneRepository.saveAll(readAirplanes());
         airlineRepository.saveAll(readAirlines());
         airportRepository.saveAll(readAirports());
-      Flight flight = Flight.builder()
-        .airplane(airplaneRepository.findAirplaneByTypeDeclaration("Embraer-170").get())
-        .from(airportRepository.findAirportByIataCode("LOWG").get())
-        .to(airportRepository.findAirportByIataCode("LOWW").get())
-        .operator(airlineRepository.findAirlineByName("Lufthansa").get())
-        .flightNumber("LH127")
-        .departureTime(LocalDateTime.now().plusHours(1))
-        .arrivalTime(LocalDateTime.now().plusHours(1).plusMinutes(30L))
-        .status(FlightStatus.IN_FLIGHT)
-        .build();
+        Flight flight = Flight.builder()
+                .airplane(airplaneRepository.findAirplaneByTypeDeclaration("Embraer-170").get())
+                .from(airportRepository.findAirportByIataCode("LOWG").get())
+                .to(airportRepository.findAirportByIataCode("LOWW").get())
+                .operator(airlineRepository.findAirlineByName("Lufthansa").get())
+                .flightNumber("LH127")
+                .departureTime(LocalDateTime.now().plusHours(1))
+                .arrivalTime(LocalDateTime.now().plusHours(1).plusMinutes(30L))
+                .status(FlightStatus.IN_FLIGHT)
+                .build();
         flightRepository.save(flight);
         logger.debug("Dataloading finished");
     }

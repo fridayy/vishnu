@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @author bnjm@harmless.ninja - 7/16/17.
  */
 @Service
-public class AirportDataService extends GenericDataService<Airport, AirportResource>{
+public class AirportDataService extends GenericDataService<Airport, AirportResource> {
 
     private CountryRepository countryRepository;
 
@@ -85,9 +85,9 @@ public class AirportDataService extends GenericDataService<Airport, AirportResou
     }
 
     public AirportResource findByIataCode(String iataCode) {
-      AirportRepository repository = (AirportRepository) this.repository;
-      Optional<Airport> optional = repository.findAirportByIataCode(iataCode);
+        AirportRepository repository = (AirportRepository) this.repository;
+        Optional<Airport> optional = repository.findAirportByIataCode(iataCode);
 
-      return optional.map(resourceAssembler::toResource).orElseThrow(ResourceNotFoundException::new);
+        return optional.map(resourceAssembler::toResource).orElseThrow(ResourceNotFoundException::new);
     }
 }

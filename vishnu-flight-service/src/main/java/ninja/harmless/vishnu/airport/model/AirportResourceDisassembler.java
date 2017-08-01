@@ -31,19 +31,19 @@ public class AirportResourceDisassembler implements ResourceDisassembler<Airport
     public Airport fromResource(AirportResource resource) {
         Optional<AirportResource> optional = Optional.ofNullable(resource);
         if (optional.isPresent()) {
-          if (resource.getCountryResource() == null) {
-              Airport a = airportRepository.findAll().stream()
-                .filter(airport -> airport.getIataCode().equalsIgnoreCase(resource.getIataCode()))
-                .findFirst().orElseThrow(ResourceNotFoundException::new);
-              Country c = a.getCountry();
+            if (resource.getCountryResource() == null) {
+                Airport a = airportRepository.findAll().stream()
+                        .filter(airport -> airport.getIataCode().equalsIgnoreCase(resource.getIataCode()))
+                        .findFirst().orElseThrow(ResourceNotFoundException::new);
+                Country c = a.getCountry();
 
-            return new Airport(resource.getIataCode(),
-              c, resource.getCity());
-          } else {
-            return new Airport(resource.getIataCode(),
-              countryResourceDisassembler.fromResource(resource.getCountryResource()),
-              resource.getCity());
-          }
+                return new Airport(resource.getIataCode(),
+                        c, resource.getCity());
+            } else {
+                return new Airport(resource.getIataCode(),
+                        countryResourceDisassembler.fromResource(resource.getCountryResource()),
+                        resource.getCity());
+            }
         }
         throw new ResourceNotFoundException();
     }

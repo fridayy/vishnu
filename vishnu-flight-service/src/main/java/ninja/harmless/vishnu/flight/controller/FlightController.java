@@ -19,25 +19,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("${api.version}/flight")
 public class FlightController extends GenericCrudController<FlightResource> {
 
-  private FlightMonitoringServiceFeignClient flightMonitoringServiceFeignClient;
-  private ResourceDisassembler<FlightResource, Flight> disassembler;
+    private FlightMonitoringServiceFeignClient flightMonitoringServiceFeignClient;
+    private ResourceDisassembler<FlightResource, Flight> disassembler;
 
-  @Autowired
-  public FlightController(DataService<FlightResource> dataService,
-                          FlightMonitoringServiceFeignClient flightMonitoringServiceFeignClient,
-                          ResourceDisassembler<FlightResource, Flight> disassembler) {
-    super(dataService);
-    this.flightMonitoringServiceFeignClient = flightMonitoringServiceFeignClient;
-    this.disassembler = disassembler;
-  }
+    @Autowired
+    public FlightController(DataService<FlightResource> dataService,
+                            FlightMonitoringServiceFeignClient flightMonitoringServiceFeignClient,
+                            ResourceDisassembler<FlightResource, Flight> disassembler) {
+        super(dataService);
+        this.flightMonitoringServiceFeignClient = flightMonitoringServiceFeignClient;
+        this.disassembler = disassembler;
+    }
 
-  @Override
-  @PostMapping
-  public ResponseEntity<FlightResource> insert(@RequestBody FlightResource body) {
-    ResponseEntity<FlightResource> obj = super.insert(body);
-    FlightConverter converter = new FlightConverter();
-    flightMonitoringServiceFeignClient.handleFlightResource(converter.convert(body));
+    @Override
+    @PostMapping
+    public ResponseEntity<FlightResource> insert(@RequestBody FlightResource body) {
+        ResponseEntity<FlightResource> obj = super.insert(body);
+        FlightConverter converter = new FlightConverter();
+        flightMonitoringServiceFeignClient.handleFlightResource(converter.convert(body));
 
-    return obj;
-  }
+        return obj;
+    }
 }

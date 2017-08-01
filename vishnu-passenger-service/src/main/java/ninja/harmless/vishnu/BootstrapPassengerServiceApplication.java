@@ -17,24 +17,24 @@ import reactor.core.publisher.Mono;
 @EnableFeignClients
 public class BootstrapPassengerServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BootstrapPassengerServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BootstrapPassengerServiceApplication.class, args);
+    }
 }
 
 
 @RestController
 class Controller {
 
-	@Autowired
-	CountryDiscoveryClient discoveryClient;
+    @Autowired
+    CountryDiscoveryClient discoveryClient;
 
-	@Autowired
+    @Autowired
     FlightServiceFeignClient feignClient;
 
-	@GetMapping("/")
-	public Mono<CountryResource> getPassenger() {
-		CountryResource c = feignClient.getCountryByCountryCode("AT");
-		return Mono.just(c);
-	}
+    @GetMapping("/")
+    public Mono<CountryResource> getPassenger() {
+        CountryResource c = feignClient.getCountryByCountryCode("AT");
+        return Mono.just(c);
+    }
 }

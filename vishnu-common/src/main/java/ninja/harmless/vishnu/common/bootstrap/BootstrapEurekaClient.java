@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 
 /**
  * Meta annotation for spring boot config clients
+ *
  * @author bnjm@harmless.ninja - 6/15/17.
  */
 @Retention(RetentionPolicy.RUNTIME)

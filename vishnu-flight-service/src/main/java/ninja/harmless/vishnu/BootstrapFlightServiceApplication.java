@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableFeignClients
 public class BootstrapFlightServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BootstrapFlightServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BootstrapFlightServiceApplication.class, args);
+    }
 }

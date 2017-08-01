@@ -51,9 +51,9 @@ public class AirplaneDataService extends GenericDataService<Airplane, AirplaneRe
     }
 
     public AirplaneResource findByTypeDeclaration(String typeDeclaration) {
-      AirplaneRepository concreteRepository = (AirplaneRepository) repository;
-      Optional<Airplane> optional = concreteRepository.findAirplaneByTypeDeclaration(typeDeclaration);
+        AirplaneRepository concreteRepository = (AirplaneRepository) repository;
+        Optional<Airplane> optional = concreteRepository.findAirplaneByTypeDeclaration(typeDeclaration);
 
-      return optional.map(resourceAssembler::toResource).orElseThrow(ResourceNotFoundException::new);
+        return optional.map(resourceAssembler::toResource).orElseThrow(ResourceNotFoundException::new);
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @EnableFeignClients
 public class BootstrapFlightMonitoringApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BootstrapFlightMonitoringApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BootstrapFlightMonitoringApplication.class, args);
+    }
 }

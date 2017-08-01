@@ -30,13 +30,13 @@ public class GenericPropertiesReader {
 
         Constructor[] constructors = type.getConstructors();
 
-        if(constructors.length != 2) {
+        if (constructors.length != 2) {
             throw new IllegalArgumentException("Only classes with one constructor are allowed");
         }
 
         Constructor c = null;
 
-        if(constructors[0].getParameterTypes().length != 0) {
+        if (constructors[0].getParameterTypes().length != 0) {
             c = constructors[0];
         } else {
             c = constructors[1];

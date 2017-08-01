@@ -16,7 +16,7 @@ public class AirplaneResourceDisassembler implements ResourceDisassembler<Airpla
     @Override
     public Airplane fromResource(AirplaneResource resource) {
         Optional<AirplaneResource> optional = Optional.ofNullable(resource);
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             return new Airplane(resource.getTypeDeclaration(), resource.getCapacity());
         }
         throw new ResourceNotFoundException();

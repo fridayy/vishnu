@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FlightServiceController {
 
-  @GetMapping("/")
-  public ModelAndView frontend() {
-    return new ModelAndView("forward://index.html");
-  }
+    @GetMapping("/")
+    public ModelAndView frontend() {
+        return new ModelAndView("forward://index.html");
+    }
 }

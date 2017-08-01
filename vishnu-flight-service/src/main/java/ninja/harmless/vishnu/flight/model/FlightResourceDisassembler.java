@@ -33,21 +33,21 @@ public class FlightResourceDisassembler implements ResourceDisassembler<FlightRe
 
     @Override
     public Flight fromResource(FlightResource resource) {
-      Optional<FlightResource> optional = Optional.ofNullable(resource);
-      FlightResource flightResource = optional.orElseThrow(ResourceNotFoundException::new);
-      Optional<Airport> from = airportRepository.findAirportByIataCode(flightResource.getFrom().getIataCode());
-      Optional<Airport> to = airportRepository.findAirportByIataCode(flightResource.getTo().getIataCode());
-      Optional<Airplane> airplane = airplaneRepository.findAirplaneByTypeDeclaration(flightResource.getAirplane().getTypeDeclaration());
-      Optional<Airline> airline = airlineRepository.findAirlineByName(flightResource.getOperator().getName());
+        Optional<FlightResource> optional = Optional.ofNullable(resource);
+        FlightResource flightResource = optional.orElseThrow(ResourceNotFoundException::new);
+        Optional<Airport> from = airportRepository.findAirportByIataCode(flightResource.getFrom().getIataCode());
+        Optional<Airport> to = airportRepository.findAirportByIataCode(flightResource.getTo().getIataCode());
+        Optional<Airplane> airplane = airplaneRepository.findAirplaneByTypeDeclaration(flightResource.getAirplane().getTypeDeclaration());
+        Optional<Airline> airline = airlineRepository.findAirlineByName(flightResource.getOperator().getName());
 
-      return Flight.builder()
-        .flightNumber(flightResource.getFlightNumber())
-        .airplane(airplane.orElseThrow(ResourceNotFoundException::new))
-        .arrivalTime(LocalDateTime.parse(flightResource.getArrivalTime()))
-        .departureTime(LocalDateTime.parse(flightResource.getDepartureTime()))
-        .from(from.orElseThrow(ResourceNotFoundException::new))
-        .to(to.orElseThrow(ResourceNotFoundException::new))
-        .operator(airline.orElseThrow(ResourceNotFoundException::new))
-        .status(FlightStatus.valueOf(flightResource.getStatus().toUpperCase())).build();
+        return Flight.builder()
+                .flightNumber(flightResource.getFlightNumber())
+                .airplane(airplane.orElseThrow(ResourceNotFoundException::new))
+                .arrivalTime(LocalDateTime.parse(flightResource.getArrivalTime()))
+                .departureTime(LocalDateTime.parse(flightResource.getDepartureTime()))
+                .from(from.orElseThrow(ResourceNotFoundException::new))
+                .to(to.orElseThrow(ResourceNotFoundException::new))
+                .operator(airline.orElseThrow(ResourceNotFoundException::new))
+                .status(FlightStatus.valueOf(flightResource.getStatus().toUpperCase())).build();
     }
 }

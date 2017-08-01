@@ -17,18 +17,17 @@ import java.util.List;
  * Showcases a usage example of the standard discovery client. However this approach is not ideal since it does not take advantage
  * of client-side load balancing (ribbon)
  *
- * @deprecated
  * @author bnjm@harmless.ninja - 7/16/17.
+ * @deprecated
  */
 @Component
 @Deprecated
 public class CountryDiscoveryClient {
 
+    private static final String VISHNU_FLIGHT_SERVICE = "vishnu-flight-service";
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private DiscoveryClient discoveryClient;
-
-    private static final  String VISHNU_FLIGHT_SERVICE = "vishnu-flight-service";
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public CountryResource getCountryByCountryCode(String code) {
         RestTemplate restTemplate = new RestTemplate();

@@ -22,8 +22,8 @@ public class AirportController extends GenericCrudController<AirportResource> {
 
     @GetMapping(params = "iata", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AirportResource> findByIataCode(@RequestParam String iata) {
-      AirportDataService dataService = (AirportDataService) this.dataService;
+        AirportDataService dataService = (AirportDataService) this.dataService;
 
-      return new ResponseEntity<AirportResource>(dataService.findByIataCode(iata), HttpStatus.OK);
+        return new ResponseEntity<AirportResource>(dataService.findByIataCode(iata), HttpStatus.OK);
     }
 }

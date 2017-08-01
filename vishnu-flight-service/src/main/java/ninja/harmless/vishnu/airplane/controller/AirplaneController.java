@@ -27,8 +27,8 @@ public class AirplaneController extends GenericCrudController<AirplaneResource> 
 
     @GetMapping(params = "type", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AirplaneResource> findByType(String type) {
-      AirplaneDataService dataService = (AirplaneDataService) this.dataService;
+        AirplaneDataService dataService = (AirplaneDataService) this.dataService;
 
-      return new ResponseEntity<>(dataService.findByTypeDeclaration(type), HttpStatus.OK);
+        return new ResponseEntity<>(dataService.findByTypeDeclaration(type), HttpStatus.OK);
     }
 }
