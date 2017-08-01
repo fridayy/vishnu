@@ -66,3 +66,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+*.lock
