@@ -1,5 +1,6 @@
 package ninja.harmless.vishnu.simulation;
 
+import ninja.harmless.vishnu.common.api.FlightServiceFeignClient;
 import ninja.harmless.vishnu.common.geo.GeoCalculation;
 import ninja.harmless.vishnu.common.resource.LatLon;
 import ninja.harmless.vishnu.common.resource.RawFlightResource;
@@ -19,24 +20,39 @@ import java.util.Objects;
 @Component
 public class FlightMovementSimulation {
 
-    private ReactiveFlightRepository repository;
+    private final ReactiveFlightRepository repository;
+    private final FlightServiceFeignClient flightServiceFeignClient;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public FlightMovementSimulation(ReactiveFlightRepository repository) {
+    public FlightMovementSimulation(ReactiveFlightRepository repository, FlightServiceFeignClient flightServiceFeignClient) {
         this.repository = repository;
+        this.flightServiceFeignClient = flightServiceFeignClient;
     }
 
+    @Autowired
+
+
+    /**
+     * Simulates the path of an "in flight" {@link RawFlightResource}. This is done by calculating the next projected
+     * {@link LatLon} coordinate. For each step a new {@link RawFlightResource} is created in the capped mongo collection.
+     */
     @Scheduled(fixedRate = 2000)
     public void simulateMovement() {
-
+        // get all resources and group them by the flight number
         repository.findAll().groupBy(RawFlightResource::getFlightNumber).subscribe(groupedObs -> {
+            //take the last from each grouped observable and update their flight path by creating a copy with the new lat lon
             groupedObs.takeLast(1).subscribe(rawFlightResource -> {
                 if (!hasArrived(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon())) {
                     RawFlightResource resource = new RawFlightResource(rawFlightResource);
                     LatLon next = GeoCalculation.calculateProjectedPosition(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon());
                     resource.setLatLon(next);
                     repository.save(resource).subscribe();
+                } else {
+                    //update the flight status and send it to the flight service
+                    rawFlightResource.setStatus("landed");
+                    flightServiceFeignClient.updateResource(rawFlightResource);
                 }
             });
         });

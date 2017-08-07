@@ -109,5 +109,39 @@ public class RawFlightResource {
         this.id = id;
     }
 
+    public void setFrom(AirportResource from) {
+        this.from = from;
+    }
 
+    public void setTo(AirportResource to) {
+        this.to = to;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAirplane(AirplaneResource airplane) {
+        this.airplane = airplane;
+    }
+
+    public void setOperator(AirlineResource operator) {
+        this.operator = operator;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
 }

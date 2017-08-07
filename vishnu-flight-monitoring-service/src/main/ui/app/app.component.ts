@@ -28,20 +28,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         const map = leaflet.map('mapid').setView([51.505, -0.09], 4);
         map.addLayer(this.tileLayer);
-        var geojsonFeature = {
-            "type": "Feature",
-            "properties": {
-                "name": "Vienna Airport",
-                "amenity": "Airport",
-                "popupContent": "This is the Vienna Airport"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [48.11029816, 16.56970024]
-            }
-        };
-
-        this.sseService.get().subscribe()
+        this.sseService.get().subscribe();
 
         // leaflet.geoJSON(geojsonFeature).addTo(map);
         this.sseService.get()

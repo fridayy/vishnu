@@ -5,7 +5,6 @@ import ninja.harmless.vishnu.common.exception.MalformedUUIDException;
 import ninja.harmless.vishnu.common.exception.RequestParameterNotFoundException;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.ResourceSupport;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
  * Represents a generic REST controller.
@@ -27,7 +27,7 @@ public abstract class GenericCrudController<R extends ResourceSupport> {
         this.dataService = dataService;
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<R> getOne(@PathVariable String id) {
         UUID uuid;
         try {
@@ -39,7 +39,7 @@ public abstract class GenericCrudController<R extends ResourceSupport> {
     }
 
 
-    @GetMapping(params = "q", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(params = "q", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<R>> getAll(@RequestParam String q) {
         if ("all".equalsIgnoreCase(q)) {
             return new ResponseEntity<>(dataService.findAll(), OK);
@@ -47,7 +47,7 @@ public abstract class GenericCrudController<R extends ResourceSupport> {
         throw new RequestParameterNotFoundException("Request parameter {" + q + "} is not mapped");
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<PagedResources<R>> getPaged(@RequestParam(value = "size", defaultValue = "15") int size,
                                                       @RequestParam(value = "page", defaultValue = "0") int page) {
         return new ResponseEntity<>(dataService.get(size, page), OK);
@@ -65,7 +65,7 @@ public abstract class GenericCrudController<R extends ResourceSupport> {
         return new ResponseEntity<>(GONE);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<R> update(@RequestBody R body) {
         return new ResponseEntity<>(dataService.update(body), OK);
     }
