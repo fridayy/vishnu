@@ -29,13 +29,16 @@ public class FlightMovementSimulation {
 
     @Scheduled(fixedRate = 2000)
     public void simulateMovement() {
-        repository.findAll().takeLast(1).subscribe(rawFlightResource -> {
-            if (!hasArrived(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon())) {
-                RawFlightResource resource = new RawFlightResource(rawFlightResource);
-                LatLon next = GeoCalculation.calculateProjectedPosition(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon());
-                resource.setLatLon(next);
-                repository.save(resource).subscribe();
-            }
+
+        repository.findAll().groupBy(RawFlightResource::getFlightNumber).subscribe(groupedObs -> {
+            groupedObs.takeLast(1).subscribe(rawFlightResource -> {
+                if (!hasArrived(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon())) {
+                    RawFlightResource resource = new RawFlightResource(rawFlightResource);
+                    LatLon next = GeoCalculation.calculateProjectedPosition(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon());
+                    resource.setLatLon(next);
+                    repository.save(resource).subscribe();
+                }
+            });
         });
     }
 

@@ -17,5 +17,6 @@ public interface ReactiveFlightRepository extends ReactiveMongoRepository<RawFli
     Flux<RawFlightResource> findBy();
 
     @Tailable
-    Flux<RawFlightResource> findByFlightNumber();
+    Flux<RawFlightResource> findByFlightNumber(String flightNumber);
+
 }

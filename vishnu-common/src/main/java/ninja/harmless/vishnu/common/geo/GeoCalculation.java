@@ -18,7 +18,7 @@ public abstract class GeoCalculation {
      * @return
      */
     public static LatLon calculateProjectedPosition(LatLon current, LatLon target) {
-        double speed = 194.4444 / 1000;
+        double speed = 194.4444 / 10;
         double time = 2;
 
         double distance = (speed * time);
