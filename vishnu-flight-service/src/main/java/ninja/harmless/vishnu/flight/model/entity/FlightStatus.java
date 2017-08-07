@@ -19,4 +19,13 @@ public enum FlightStatus {
     public String getStringValue() {
         return stringValue;
     }
+
+    public static FlightStatus fromStringValue(String stringValue) {
+        for (FlightStatus flightStatus : FlightStatus.values()) {
+            if (flightStatus.getStringValue().equalsIgnoreCase(stringValue)) {
+                return flightStatus;
+            }
+        }
+        return null;
+    }
 }

@@ -14,15 +14,17 @@ public class AirportResource extends ResourceSupport {
     private String iataCode;
     private String city;
     private UUID uuid;
+    private LatLon latLon;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private CountryResource countryResource;
 
-    public AirportResource(String iataCode, String city, UUID uuid, CountryResource countryResource) {
+    public AirportResource(String iataCode, String city, UUID uuid, CountryResource countryResource, LatLon latLon) {
         this.iataCode = iataCode;
         this.city = city;
         this.uuid = uuid;
         this.countryResource = countryResource;
+        this.latLon = latLon;
     }
 
     public AirportResource() {
@@ -38,6 +40,10 @@ public class AirportResource extends ResourceSupport {
 
     public UUID getUuid() {
         return uuid;
+    }
+
+    public LatLon getLatLon() {
+        return latLon;
     }
 
     public CountryResource getCountryResource() {
@@ -57,6 +63,7 @@ public class AirportResource extends ResourceSupport {
                 .append(iataCode, that.iataCode)
                 .append(city, that.city)
                 .append(uuid, that.uuid)
+                .append(latLon, that.latLon)
                 .append(countryResource, that.countryResource)
                 .isEquals();
     }
@@ -68,6 +75,7 @@ public class AirportResource extends ResourceSupport {
                 .append(iataCode)
                 .append(city)
                 .append(uuid)
+                .append(latLon)
                 .append(countryResource)
                 .toHashCode();
     }

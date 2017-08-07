@@ -42,8 +42,9 @@ export class AddFlightComponent implements OnInit {
     forkJoin([
       this.http.get(this._injector.get(BACKEND_URL) + 'airline?name=' + this.formModel.get('airline').value).map(res => res.json()),
       this.http.get(this._injector.get(BACKEND_URL) + 'airplane?type=' + this.formModel.get('airplane').value).map(res => res.json()),
-      this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + this.formModel.get('from').value).map(res => res.json()),
-      this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + this.formModel.get('to').value).map(res => res.json())
+        this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + this.formModel.get('to').value).map(res => res.json()),
+      this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + this.formModel.get('from').value).map(res => res.json())
+
     ]).subscribe(data => {
       const flight = {
         flightNumber: this.formModel.get('flightNumber').value,

@@ -38,11 +38,15 @@ public class AirportResourceDisassembler implements ResourceDisassembler<Airport
                 Country c = a.getCountry();
 
                 return new Airport(resource.getIataCode(),
-                        c, resource.getCity());
+                        c, resource.getCity(),
+                        resource.getLatLon().getLat(),
+                        resource.getLatLon().getLon());
             } else {
                 return new Airport(resource.getIataCode(),
                         countryResourceDisassembler.fromResource(resource.getCountryResource()),
-                        resource.getCity());
+                        resource.getCity(),
+                        resource.getLatLon().getLat(),
+                        resource.getLatLon().getLon());
             }
         }
         throw new ResourceNotFoundException();

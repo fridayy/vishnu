@@ -29,10 +29,15 @@ public class Airport extends AbstractPersistable<Long> {
     @OneToMany
     private List<Flight> flightList;
 
-    public Airport(String iataCode, Country country, String city) {
+    private double latitude;
+    private double longitude;
+
+    public Airport(String iataCode, Country country, String city, double latitude, double longitude) {
         this.iataCode = iataCode;
         this.country = country;
         this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Airport() {
@@ -78,6 +83,22 @@ public class Airport extends AbstractPersistable<Long> {
         this.uuid = uuid;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +114,8 @@ public class Airport extends AbstractPersistable<Long> {
                 .append(city, airport.city)
                 .append(uuid, airport.uuid)
                 .append(flightList, airport.flightList)
+                .append(latitude, airport.latitude)
+                .append(longitude, airport.longitude)
                 .isEquals();
     }
 
@@ -105,6 +128,8 @@ public class Airport extends AbstractPersistable<Long> {
                 .append(city)
                 .append(uuid)
                 .append(flightList)
+                .append(latitude)
+                .append(longitude)
                 .toHashCode();
     }
 }

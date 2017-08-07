@@ -74,7 +74,8 @@ public class FlightGeneratorBean {
             records.forEach(record -> {
                 assert countryRepository.count() != 0;
                 Country c = countryRepository.findCountryByCountryCode(record.get("iso_country"));
-                Airport airport = new Airport(record.get("ident"), c, record.get("municipality"));
+                String[] latlon = record.get("coordinates").split(",");
+                Airport airport = new Airport(record.get("ident"), c, record.get("municipality"), Double.valueOf(latlon[1]), Double.valueOf(latlon[0]));
                 airports.add(airport);
             });
         } catch (IOException e) {

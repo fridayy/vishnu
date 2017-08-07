@@ -48,6 +48,6 @@ public class FlightResourceDisassembler implements ResourceDisassembler<FlightRe
                 .from(from.orElseThrow(ResourceNotFoundException::new))
                 .to(to.orElseThrow(ResourceNotFoundException::new))
                 .operator(airline.orElseThrow(ResourceNotFoundException::new))
-                .status(FlightStatus.valueOf(flightResource.getStatus().toUpperCase())).build();
+                .status(FlightStatus.fromStringValue(flightResource.getStatus())).build();
     }
 }

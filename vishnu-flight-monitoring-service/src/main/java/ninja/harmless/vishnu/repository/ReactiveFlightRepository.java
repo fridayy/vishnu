@@ -15,4 +15,7 @@ import java.util.UUID;
 public interface ReactiveFlightRepository extends ReactiveMongoRepository<RawFlightResource, UUID> {
     @Tailable
     Flux<RawFlightResource> findBy();
+
+    @Tailable
+    Flux<RawFlightResource> findByFlightNumber();
 }
