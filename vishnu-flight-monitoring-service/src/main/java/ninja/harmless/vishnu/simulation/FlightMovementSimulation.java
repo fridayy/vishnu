@@ -31,9 +31,6 @@ public class FlightMovementSimulation {
         this.flightServiceFeignClient = flightServiceFeignClient;
     }
 
-    @Autowired
-
-
     /**
      * Simulates the path of an "in flight" {@link RawFlightResource}. This is done by calculating the next projected
      * {@link LatLon} coordinate. For each step a new {@link RawFlightResource} is created in the capped mongo collection.
@@ -49,17 +46,20 @@ public class FlightMovementSimulation {
                     LatLon next = GeoCalculation.calculateProjectedPosition(rawFlightResource.getLatLon(), rawFlightResource.getTo().getLatLon());
                     resource.setLatLon(next);
                     repository.save(resource).subscribe();
-                } else {
+                } else if (!rawFlightResource.getStatus().equalsIgnoreCase("landed")){
                     //update the flight status and send it to the flight service
-                    rawFlightResource.setStatus("landed");
-                    flightServiceFeignClient.updateResource(rawFlightResource);
+                    RawFlightResource resource = new RawFlightResource(rawFlightResource);
+                    resource.setStatus("landed");
+                    flightServiceFeignClient.updateResource(resource);
+                    //save it one last time so that the frontend can adapt
+                    repository.save(resource).subscribe();
                 }
             });
         });
     }
 
     public boolean hasArrived(LatLon current, LatLon target) {
-        DecimalFormat df = new DecimalFormat("###.##");
+        DecimalFormat df = new DecimalFormat("###.#");
         return Objects.equals(Double.valueOf(df.format(current.getLat())), Double.valueOf(df.format(target.getLat()))) &&
                 Objects.equals(Double.valueOf(df.format(current.getLon())), Double.valueOf(df.format(target.getLon())));
     }

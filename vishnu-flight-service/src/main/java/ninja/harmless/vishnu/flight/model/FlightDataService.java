@@ -39,7 +39,10 @@ public class FlightDataService extends GenericDataService<Flight, FlightResource
 
     @Override
     public FlightResource update(FlightResource entity) {
-        return null;
+        FlightRepository concreteRepository = (FlightRepository) repository;
+        Flight f = resourceDisassembler.fromResource(entity);
+        concreteRepository.save(f);
+        return entity;
     }
 
     @Override

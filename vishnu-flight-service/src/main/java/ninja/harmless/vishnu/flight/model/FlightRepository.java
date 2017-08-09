@@ -11,4 +11,6 @@ import java.util.UUID;
  */
 public interface FlightRepository extends JpaRepository<Flight, Long> {
     Optional<Flight> findByUuid(UUID uuid);
+
+    Optional<Flight> findFlightByFlightNumber(String flightNumber);
 }

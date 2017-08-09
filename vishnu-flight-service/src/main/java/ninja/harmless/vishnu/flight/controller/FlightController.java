@@ -8,6 +8,7 @@ import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
 import ninja.harmless.vishnu.common.resource.FlightResource;
 import ninja.harmless.vishnu.flight.model.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +40,13 @@ public class FlightController extends GenericCrudController<FlightResource> {
         flightMonitoringServiceFeignClient.handleFlightResource(converter.convert(body));
 
         return obj;
+    }
+
+    @Override
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FlightResource> update(@RequestBody FlightResource body) {
+        ResponseEntity<FlightResource> resource = super.update(body);
+        dataService.update(body);
+        return resource;
     }
 }

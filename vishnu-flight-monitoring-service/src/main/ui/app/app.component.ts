@@ -7,36 +7,8 @@ import "rxjs/add/operator/takeLast";
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    providers: [SseService]
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-    tileLayer: any;
-    zone: NgZone;
-    l: any;
-
-    constructor(private sseService: SseService) {
-        this.l = leaflet;
-        this.tileLayer = leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        })
-        this.zone = new NgZone({enableLongStackTrace: false});
-    }
-
-    ngOnInit(): void {
-        const map = leaflet.map('mapid').setView([51.505, -0.09], 4);
-        map.addLayer(this.tileLayer);
-        this.sseService.get().subscribe();
-
-        // leaflet.geoJSON(geojsonFeature).addTo(map);
-        this.sseService.get()
-            .map(next => JSON.parse(next))
-            .subscribe(next => {
-            this.zone.run(() => {
-                leaflet.circle([next.latLon.lat, next.latLon.lon]).addTo(map);
-            });
-        });
-    }
 }
