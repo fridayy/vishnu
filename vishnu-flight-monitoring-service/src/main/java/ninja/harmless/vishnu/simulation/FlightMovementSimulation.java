@@ -5,8 +5,6 @@ import ninja.harmless.vishnu.common.geo.GeoCalculation;
 import ninja.harmless.vishnu.common.resource.LatLon;
 import ninja.harmless.vishnu.common.resource.RawFlightResource;
 import ninja.harmless.vishnu.repository.ReactiveFlightRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,8 +20,6 @@ public class FlightMovementSimulation {
 
     private final ReactiveFlightRepository repository;
     private final FlightServiceFeignClient flightServiceFeignClient;
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public FlightMovementSimulation(ReactiveFlightRepository repository, FlightServiceFeignClient flightServiceFeignClient) {

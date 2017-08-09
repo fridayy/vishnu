@@ -2,6 +2,8 @@ package ninja.harmless.vishnu.common.geo;
 
 import ninja.harmless.vishnu.common.resource.LatLon;
 
+import static java.lang.Math.*;
+
 /**
  * Provides Geo calculation conviencies methods
  *
@@ -13,32 +15,33 @@ public abstract class GeoCalculation {
 
     /**
      * Calculates the projected next point given the speed and time e.g: 700km/h
+     *
      * @param current
      * @param target
      * @return
      */
     public static LatLon calculateProjectedPosition(LatLon current, LatLon target) {
-        double speed = 194.4444 / 10;
+        double speed = 194.4444 / 100;
         double time = 2;
 
         double distance = (speed * time);
 
-        double Y = Math.sin(Math.toRadians(target.getLon() - current.getLon())) * Math.cos(Math.toRadians(target.getLat()));
-        double X = Math.cos(Math.toRadians(current.getLat()))*Math.sin(Math.toRadians(target.getLat())) - Math.sin(Math.toRadians(current.getLat()))*Math.cos(Math.toRadians(target.getLat()))*Math.cos(Math.toRadians(target.getLon() - current.getLon()));
+        double Y = sin(toRadians(target.getLon() - current.getLon())) * cos(toRadians(target.getLat()));
+        double X = cos(toRadians(current.getLat())) * sin(toRadians(target.getLat())) - sin(toRadians(current.getLat()))
+                * cos(toRadians(target.getLat())) * cos(toRadians(target.getLon() - current.getLon()));
 
-        double bearing = Math.toDegrees(Math.atan2(Y,X));
+        double bearing = toDegrees(atan2(Y, X));
 
+        double lat2 = Math.asin(sin(PI / 180 * current.getLat()) * cos(distance / EARTH_RADIUS) +
+                cos(PI / 180 * current.getLat()) * sin(distance / EARTH_RADIUS) * cos(PI / 180 * bearing));
 
-        double lat2 = Math.asin(Math.sin(Math.PI / 180 * current.getLat()) * Math.cos(distance / EARTH_RADIUS) +
-                Math.cos(Math.PI / 180 * current.getLat()) * Math.sin(distance / EARTH_RADIUS) * Math.cos(Math.PI / 180 * bearing));
+        double lon2 = PI / 180 * current.getLon() + atan2(sin(PI / 180 * bearing)
+                        * sin(distance / EARTH_RADIUS) * cos(PI / 180 * current.getLat()),
+                cos(distance / EARTH_RADIUS) - sin(PI / 180 * current.getLat()) * sin(lat2));
 
-        double lon2 = Math.PI / 180 * current.getLon() + Math.atan2(Math.sin( Math.PI / 180 * bearing)
-                * Math.sin(distance / EARTH_RADIUS) * Math.cos( Math.PI / 180 * current.getLat() ),
-                Math.cos(distance / EARTH_RADIUS) - Math.sin( Math.PI / 180 * current.getLat()) * Math.sin(lat2));
+        double correctedLat = 180 / PI * lat2;
+        double correctedLon = 180 / PI * lon2;
 
-        double lat22 =  180 / Math.PI * lat2;
-        double lon22 = 180 / Math.PI * lon2;
-
-        return new LatLon(lat22, lon22);
+        return new LatLon(correctedLat, correctedLon);
     }
 }
