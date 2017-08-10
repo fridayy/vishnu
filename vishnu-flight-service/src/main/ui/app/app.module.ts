@@ -10,40 +10,45 @@ import {BACKEND_URL} from './app.tokens';
 import {AirlinesComponent} from './component/airlines/airlines.component';
 import {HttpModule} from '@angular/http';
 import {PagedContentComponent} from './component/paged-content/paged-content.component';
-import {PaginationModule, TypeaheadModule} from 'ngx-bootstrap';
+import {AlertModule, PaginationModule, TypeaheadModule} from 'ngx-bootstrap';
 import {PagerComponent} from './component/pager/pager.component';
 import {CountryComponent} from './component/country/country.component';
 import {AirportComponent} from './component/airport/airport.component';
 import {FlightComponent} from './component/flight/flight.component';
 import {AddFlightComponent} from './component/flight/add-flight/add-flight.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DateTimePickerModule} from "ng-pick-datetime";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    NavigationComponent,
-    AirplaneComponent,
-    AirlinesComponent,
-    PagedContentComponent,
-    PagerComponent,
-    CountryComponent,
-    AirportComponent,
-    FlightComponent,
-    AddFlightComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    PaginationModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    ReactiveFormsModule,
-    routing
-  ],
-  providers: [
-    // provide backend URL as a constant value
-    { provide: BACKEND_URL, useValue: 'http://localhost:8001/v1/'}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        NavigationComponent,
+        AirplaneComponent,
+        AirlinesComponent,
+        PagedContentComponent,
+        PagerComponent,
+        CountryComponent,
+        AirportComponent,
+        FlightComponent,
+        AddFlightComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpModule,
+        PaginationModule.forRoot(),
+        TypeaheadModule.forRoot(),
+        AlertModule.forRoot(),
+        FormsModule,
+        DateTimePickerModule,
+        ReactiveFormsModule,
+        routing
+    ],
+    providers: [
+        // provide backend URL as a constant value
+        {provide: BACKEND_URL, useValue: 'http://localhost:8001/v1/'}
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
