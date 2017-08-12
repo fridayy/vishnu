@@ -1,5 +1,5 @@
 import {Component, Injector, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Http} from '@angular/http';
 import {BACKEND_URL} from '../../../app.tokens';
 import {forkJoin} from 'rxjs/observable/forkJoin';
@@ -24,24 +24,29 @@ export class AddFlightComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private http: Http, private _injector: Injector, private airlineService: AirlineBackendService) {
         this.formModel = this.fb.group({
-            flightNumber: [''],
-            airline: [''],
-            from: [''],
-            to: [''],
-            airplane: [''],
-            status: [''],
-            arrivalTime: [''],
-            departureTime: ['']
+            flightNumber: ['', Validators.required],
+            airline: ['', Validators.required],
+            from: ['', Validators.required],
+            to: ['', Validators.required],
+            airplane: ['', Validators.required],
+            status: ['', Validators.required],
+            arrivalTime: ['', Validators.required],
+            departureTime: ['', Validators.required]
         });
         this.hidden = true;
     }
 
     send() {
+        // extract the IATA code and ignore the city in brackets
+        const to = this.formModel.get('to').value.split(' ')[0];
+        const from = this.formModel.get('from').value.split(' ')[0];
+
+        // fire all necessary requests to the backend and wait for them to finish before proceeding
         forkJoin([
             this.http.get(this._injector.get(BACKEND_URL) + 'airline?name=' + this.formModel.get('airline').value).map(res => res.json()),
             this.http.get(this._injector.get(BACKEND_URL) + 'airplane?type=' + this.formModel.get('airplane').value).map(res => res.json()),
-            this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + this.formModel.get('to').value).map(res => res.json()),
-            this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + this.formModel.get('from').value).map(res => res.json())
+            this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + to).map(res => res.json()),
+            this.http.get(this._injector.get(BACKEND_URL) + 'airport?iata=' + from).map(res => res.json())
 
         ]).subscribe(data => {
             const flight = {
@@ -51,8 +56,8 @@ export class AddFlightComponent implements OnInit {
                 departureTime: this.formModel.get('departureTime').value,
                 operator: data[0],
                 airplane: data[1],
-                from: data[2],
-                to: data[3]
+                from: data[3],
+                to: data[2]
             };
             this.http.post(this._injector.get(BACKEND_URL) + 'flight', flight).map(res => res.json()).subscribe()
         }, onError => {

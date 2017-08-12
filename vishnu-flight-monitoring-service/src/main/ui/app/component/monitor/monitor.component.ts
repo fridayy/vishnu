@@ -35,20 +35,51 @@ export class MonitorComponent implements OnInit {
                 this.zone.run(() => {
                     if (next.status !== 'landed') {
                         if (this.circleContainer[next.flightNumber] === undefined) {
-                            this.circleContainer[next.flightNumber] = []
+                            this.circleContainer[next.flightNumber] = {items: [], color: this.generateColor()};
                         }
-                        const circle = leaflet.circle([next.latLon.lat, next.latLon.lon]);
-                        this.circleContainer[next.flightNumber].push(circle);
+                        const circle = leaflet.circle([next.latLon.lat, next.latLon.lon],
+                            {color: this.circleContainer[next.flightNumber].color});
+                        circle.bindPopup('<b>Flight Number: </b> '
+                            + next.flightNumber + '<br><b>From:</b> ' + next.from.city +
+                        '<br><b>To: </b>' + next.to.city
+                        );
+                        this.circleContainer[next.flightNumber].items.push(circle);
                         circle.addTo(map);
-                        console.log(this.circleContainer);
-                    } else if (next.status === 'landed') {
-                        this.circleContainer[next.flightNumber].forEach(i => {
+                    } else if (next.status === 'landed' && this.circleContainer[next.flightNumber] !== undefined) {
+                        this.circleContainer[next.flightNumber].items.forEach(i => {
                             i.remove();
-                            console.log('remove circle');
                         });
-                        this.circleContainer[next.flightNumber] = [];
                     }
                 });
             });
+    }
+
+    generateColor(): string {
+        const colors: Array<string> = [
+            '#f44336',
+            '#E91E63',
+            '#9C27B0',
+            '#673AB7',
+            '#3F51B5',
+            '#2196F3',
+            '#03A9F4',
+            '#00BCD4',
+            '#009688',
+            '#4CAF50',
+            '#CDDC39',
+            '#FFEB3B',
+            '#FFC107',
+            '#FF9800',
+            '#FF5722',
+            '#795548',
+            '#263238',
+
+        ];
+
+        const min = 0;
+        const max = colors.length;
+        const selector = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        return colors[selector];
     }
 }
