@@ -55,7 +55,7 @@ dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-feign')
 	compile('org.springframework.cloud:spring-cloud-starter-ribbon')
 
-	// 3.5.0 snapshot mongo driver is currently needed to avoid sse null pointer problems
+	// 3.5.0 alpha1 mongo driver is currently needed to avoid sse null pointer problems
 	compile('org.mongodb:mongodb-driver:3.5.0-alpha1')
 	compile('org.mongodb:mongodb-driver-core:3.5.0-alpha1')
 	compile('org.mongodb:mongo-java-driver:3.5.0-alpha1')
