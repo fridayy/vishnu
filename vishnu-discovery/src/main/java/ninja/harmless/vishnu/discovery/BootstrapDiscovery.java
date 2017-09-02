@@ -1,7 +1,7 @@
 package ninja.harmless.vishnu.discovery;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
@@ -11,6 +11,6 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @EnableEurekaServer
 public class BootstrapDiscovery {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(BootstrapDiscovery.class).properties("spring.application.name=vishnu-discovery").run(args);
+        SpringApplication.run(BootstrapDiscovery.class, args);
     }
 }
