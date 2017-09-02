@@ -1,5 +1,7 @@
 package ninja.harmless.vishnu.simulation;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import ninja.harmless.vishnu.common.api.FlightServiceFeignClient;
 import ninja.harmless.vishnu.common.geo.GeoCalculation;
 import ninja.harmless.vishnu.common.resource.LatLon;
@@ -10,6 +12,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -20,6 +24,7 @@ public class FlightMovementSimulation {
 
     private final ReactiveFlightRepository repository;
     private final FlightServiceFeignClient flightServiceFeignClient;
+    private final List<RawFlightResource> failedRemoteCalls = new ArrayList<>();
 
     @Autowired
     public FlightMovementSimulation(ReactiveFlightRepository repository, FlightServiceFeignClient flightServiceFeignClient) {
@@ -43,10 +48,7 @@ public class FlightMovementSimulation {
                     resource.setLatLon(next);
                     repository.save(resource).subscribe();
                 } else if (!rawFlightResource.getStatus().equalsIgnoreCase("landed")){
-                    //update the flight status and send it to the flight service
-                    RawFlightResource resource = new RawFlightResource(rawFlightResource);
-                    resource.setStatus("landed");
-                    flightServiceFeignClient.updateResource(resource);
+                    RawFlightResource resource = setFlightLanded(rawFlightResource);
                     //save it one last time so that the frontend can adapt
                     repository.save(resource).subscribe();
                 }
@@ -54,9 +56,31 @@ public class FlightMovementSimulation {
         });
     }
 
+    @HystrixCommand(
+            commandProperties = {@HystrixProperty(
+                    name="execution.isolation.thread.timeoutInMilliseconds",
+                    value = "500"
+            )},
+            fallbackMethod = "scheduleForLaterTransmission"
+    )
+    private RawFlightResource setFlightLanded(RawFlightResource rawFlightResource) {
+        //update the flight status and send it to the flight service
+        RawFlightResource resource = new RawFlightResource(rawFlightResource);
+        resource.setStatus("landed");
+        flightServiceFeignClient.updateResource(resource);
+        return resource;
+    }
+
+    private void scheduleForLaterTransmission(RawFlightResource rawFlightResource) {
+        this.failedRemoteCalls.add(rawFlightResource);
+    }
+
     public boolean hasArrived(LatLon current, LatLon target) {
         DecimalFormat df = new DecimalFormat("###.#");
         return Objects.equals(Double.valueOf(df.format(current.getLat())), Double.valueOf(df.format(target.getLat()))) &&
                 Objects.equals(Double.valueOf(df.format(current.getLon())), Double.valueOf(df.format(target.getLon())));
     }
+
+
+
 }

@@ -1,5 +1,6 @@
 package ninja.harmless.vishnu.flight.model;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import ninja.harmless.vishnu.common.data.GenericDataService;
 import ninja.harmless.vishnu.common.exception.ResourceNotFoundException;
 import ninja.harmless.vishnu.common.hateoas.ResourceDisassembler;
@@ -46,6 +47,7 @@ public class FlightDataService extends GenericDataService<Flight, FlightResource
     }
 
     @Override
+    @HystrixCommand
     public FlightResource insert(FlightResource entity) {
         this.repository.save(resourceDisassembler.fromResource(entity));
 
