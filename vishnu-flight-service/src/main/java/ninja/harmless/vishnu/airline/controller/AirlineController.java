@@ -27,4 +27,6 @@ public class AirlineController extends GenericCrudController<AirlineResource> {
 
         return new ResponseEntity<>(dataService.findOneByName(name), HttpStatus.OK);
     }
+
+
 }

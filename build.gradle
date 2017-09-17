@@ -14,6 +14,14 @@ allprojects {
    apply plugin: 'docker'
 }
 
+docker {
+    maintainer = 'Benjamin Krenn <benjamin.krenn@edu.fh-joanneum.at>'
+    baseImage = 'frolvlad/alpine-oraclejdk8:slim'
+    apiUsername = "bnjm"
+    apiPassword = "rr5z899v"
+    apiEmail = "bnjm@harmless.ninja"
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '4.1'
 }

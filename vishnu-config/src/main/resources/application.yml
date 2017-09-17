@@ -2,15 +2,10 @@
 server:
   port: 8888
 
-# Provides a pure filesystem based configuration where all configs are stored at the location specified in
-# spring.cloud.config.server.native.searchLocation
-# This should be changed to a git based approach in the future.
 spring:
-  profiles:
-    active: native #native profile is required for a file system approach
   cloud.config.server:
-        native:
-          searchLocations: file:///home/bnjm/IdeaProjects/vishnu/vishnu-config/src/main/resources/config
+        git:
+          uri: https://github.com/fridayy/vihsnu-config
   application:
     name: vishnu-config
 

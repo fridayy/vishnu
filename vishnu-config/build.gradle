@@ -40,6 +40,7 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-config-server')
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile('org.springframework.cloud:spring-cloud-starter-sleuth')
     
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
@@ -47,5 +48,22 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+    volume("/tmp")
+    addFile("$buildDir/libs/${project.name}-${project.version}.jar", "app.jar")
+    runCommand("touch /app.jar")
+    entryPoint(["java", "-jar", "/app.jar"])
+
+    //push = true
+    tag = "bnjm/vishnu"
+    tagVersion = "${project.name}-${project.version}"
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
     }
 }
