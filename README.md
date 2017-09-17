@@ -6,9 +6,9 @@ Science degree in Software Design at the [FH Joanneum](http://www.fh-joanneum.at
 
 This prototype simulates a flight booking system with real-time flight monitoring (like seen on airports). 
 
-Architecture Overview (v1):
+Architecture Overview:
 
-![Architectural Overview](http://i.imgur.com/UFEBqUw.png)
+![Architectural Overview](https://i.imgur.com/qbjAPey.png)
 
 ### Goals
 Vishnu showcases the following characteristics, architectures and points:
@@ -22,3 +22,5 @@ Vishnu showcases the following characteristics, architectures and points:
 
 All of the mentioned characteristics are going to implemented using [Spring Boot](http://projects.spring.io/spring-boot/), 
 [Spring Cloud](http://projects.spring.io/spring-cloud/), [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/) and other Spring related projects.
+
+The paper referencing this project can be found at: 
