@@ -23,4 +23,4 @@ Vishnu showcases the following characteristics, architectures and points:
 All of the mentioned characteristics are going to implemented using [Spring Boot](http://projects.spring.io/spring-boot/), 
 [Spring Cloud](http://projects.spring.io/spring-cloud/), [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/) and other Spring related projects.
 
-The paper referencing this project can be found at: 
+The paper referencing this project can be found [here](https://github.com/fridayy/vishnu/blob/master/docs/bakk2-paper.pdf).
