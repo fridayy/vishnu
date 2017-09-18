@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: vishnu-flight-service
+  profiles:
+    active: h2db
+
+api:
+  version: v1
+server:
+  port: 8001

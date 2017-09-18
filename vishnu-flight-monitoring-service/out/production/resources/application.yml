@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: vishnu-flight-monitoring-service
+  data:
+    mongodb:
+      database: "flight-monitoring"
+api:
+  version: v1
+
+server:
+  port: 8002
