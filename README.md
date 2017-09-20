@@ -25,37 +25,37 @@ In order to run Vishnu a running [MongoDB](https://www.mongodb.com/) instance is
 
 Do run from with IDE the following **Bootstrap classes** must be started **in the given order**:
 
-1) Config Server
+1. Config Server
 ```java
 ninja.harmless.vishnu.config.BootstrapConfig
 ```
-2) Discovery Service
+2. Discovery Service
 ```java
 ninja.harmless.vishnu.discovery.BootstrapDiscovery
 ```
 
-3) Zuul
+3. Zuul
 ```java
 ninja.harmless.vishnu.BootstrapZuul
 ```
 
-4) Zipkin
+4. Zipkin
 ```java
 ninja.harmless.vishnu.BootstrapZipkin
 ```
 
-5) Flight-Service (requires MongoDB)
+5. Flight-Service (requires MongoDB)
 ```java
 ninja.harmless.vishnu.BootstrapFlightServiceApplication
 ```
 
-5) Flight-Monitoring-Service
+6. Flight-Monitoring-Service
 ```java
 ninja.harmless.vishnu.BootstrapFlightMonitoringApplication
 ```
 
-6) Start the Flight-Service UI with: ```ng serve --port=3000```
-7) Start the Flight-Monitoring-Service UI with: ```ng serve --port=3100```
+7. Start the Flight-Service UI with: ```ng serve --port=3000```
+8. Start the Flight-Monitoring-Service UI with: ```ng serve --port=3100```
 
 ### Run for Production
 tbd
