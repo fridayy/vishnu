@@ -19,6 +19,11 @@ Vishnu showcases the following characteristics, architectures and techniques:
 * Service gateway with **Netflix Zuul**
 * Deployment of services with Docker
 
+All of the mentioned characteristics and goals are implemented using [Spring Boot](http://projects.spring.io/spring-boot/), 
+[Spring Cloud](http://projects.spring.io/spring-cloud/), [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/) and other Spring related projects.
+
+The paper referencing this project can be found [here](https://github.com/fridayy/vishnu/blob/master/docs/bakk2-paper.pdf).
+
 
 ### Run for Development
 In order to run Vishnu a running [MongoDB](https://www.mongodb.com/) instance is required!
@@ -59,8 +64,3 @@ ninja.harmless.vishnu.BootstrapFlightMonitoringApplication
 
 ### Run for Production
 tbd
-
-All of the mentioned characteristics are implemented using [Spring Boot](http://projects.spring.io/spring-boot/), 
-[Spring Cloud](http://projects.spring.io/spring-cloud/), [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/) and other Spring related projects.
-
-The paper referencing this project can be found [here](https://github.com/fridayy/vishnu/blob/master/docs/bakk2-paper.pdf).
