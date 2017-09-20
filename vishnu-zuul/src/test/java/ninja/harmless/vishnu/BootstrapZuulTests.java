@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BootstrapZipkinApplicationTests {
+public class BootstrapZuulTests {
 
     @Test
     public void contextLoads() {
